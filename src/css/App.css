@@ -1,0 +1,54 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 200px 400px 400px auto;
+  grid-template-areas:
+    "header header header header"
+    "goalstracker goalstracker goalstracker updatefeed"
+    "accountabilitypartner accountabilitypartner accountabilitypartner updatefeed"
+    "lifestatus lifestatus journaling journaling"
+    "footer footer footer footer";
+}
+
+.grid-item1 {
+  background-color: brown;
+  grid-area: header;
+}
+
+.grid-item2 {
+
+  background-color: turquoise;
+  grid-area: goalstracker;
+}
+
+.grid-item3 {
+  background-color: black;
+  color: aliceblue;
+  grid-area: updatefeed;
+}
+
+.grid-item4 {
+  background-color: green;
+  grid-area: accountabilitypartner;
+}
+
+.grid-item5 {
+  background-color: burlywood;
+  grid-area: lifestatus;
+}
+
+.grid-item6 {
+  background-color: palegreen;
+  grid-area: journaling;
+}
+
+.grid-item7 {
+  background-color: fuchsia;
+  grid-area: footer;
+}
+
+.grid-container > div {
+  text-align: center;
+  font-size: 30px;
+  padding: 30px;
+}
