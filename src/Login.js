@@ -1,48 +1,67 @@
 import React from "react";
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter } from "react-router-dom";
 import "./css/Login.css";
-import LoginForm from './LoginForm'
-import App from './App'
+import LoginForm from "./LoginForm";
+import App from "./App";
+import API from "./API"
 
 class Login extends React.Component {
+  state = {
+    username: ""
+  };
 
-    state = {
-        username: ''
-    }
+  signIn = user => {
+    this.setState({ username: user.username });
+    localStorage.setItem("token", user.id);
+  };
 
-    signIn = username => {
-        this.setState({ username })
-    }
+  signOut = () => {
+    this.setState({ username: "" });
+    localStorage.removeItem("token");
+  };
 
-    signOut = () => {
-        this.setState({ username: '' })
+  componentDidMount() {
+    if (localStorage.getItem("token") !== undefined) {
+      API.validate()
+        .then(data => {
+          if (data.error) {
+            throw Error(data.error);
+          } else {
+            this.signIn(data);
+            this.props.history.push("/app");
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
     }
+  }
 
   render() {
     return (
-        <div>
+      <div>
         <Route
           exact
-          path='/signin'
+          path="/signin"
           component={routerProps => {
-            return (
-              <LoginForm {...routerProps}/> 
-            )
+            return <LoginForm {...routerProps} signIn={this.signIn} />;
           }}
         />
         <Route
           exact
-          path='/app'
-          component={props => (
-            <App {...props} />
+          path="/app"
+          component={routerProps => (
+            <App
+              {...routerProps}
+              username={this.state.username}
+              signOut={this.signOut}
+              signIn={this.signIn}
+            />
           )}
-        />{' '}
+        />{" "}
       </div>
-      
     );
   }
 }
 
 export default withRouter(Login);
-
-

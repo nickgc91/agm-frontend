@@ -1,18 +1,14 @@
 import React from "react";
 import "./css/App.css";
 import { withRouter } from 'react-router-dom'
+import API from "./API";
 
 class App extends React.Component {
-  state = {
-    users: []
-  };
-
-  fetchUserInfo = () => {
-    return fetch("http://localhost:3000/users").then(resp => resp.json());
-  };
 
   componentDidMount() {
-    this.fetchUserInfo().then(users => this.setState({ users: users }));
+    if (!this.props.username) {
+        this.props.history.push('/signin')
+      } 
   }
 
   render() {
@@ -21,13 +17,12 @@ class App extends React.Component {
         <div className="grid-container">
           <div className="grid-item1">
             <h1>1 NAV BAR</h1>
+            <button onClick={() => this.props.signOut()}>SIGN OUT</button>
           </div>
           <div className="grid-item2">
             <h1>2 GOALS TRACKER</h1>
             <div>
-              {this.state.users.map(user => {
-                return <h6 key={user.id}> {user.username} </h6>;
-              })}
+              <h1>hello</h1>
             </div>
           </div>
           <div className="grid-item3">
