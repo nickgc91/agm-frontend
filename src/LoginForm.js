@@ -95,6 +95,7 @@ class LoginForm extends React.Component {
       <h1>Login</h1>
       <form
         onSubmit={e => {
+          e.persist()
           e.preventDefault();
           this.handleLoginSubmit()
         }}

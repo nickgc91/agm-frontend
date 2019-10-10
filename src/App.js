@@ -1,7 +1,6 @@
 import React from "react";
 import "./css/App.css";
 import { withRouter } from 'react-router-dom'
-import API from "./API";
 
 class App extends React.Component {
 
@@ -17,6 +16,7 @@ class App extends React.Component {
         <div className="grid-container">
           <div className="grid-item1">
             <h1>1 NAV BAR</h1>
+            <h2>WELCOME {this.props.username}</h2>
             <button onClick={() => this.props.signOut()}>SIGN OUT</button>
           </div>
           <div className="grid-item2">
