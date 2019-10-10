@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/App.css";
+import { withRouter } from 'react-router-dom'
 
 class App extends React.Component {
   state = {
@@ -50,4 +51,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
