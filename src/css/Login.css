@@ -1,0 +1,25 @@
+.background {
+    background-color: blueviolet
+}
+
+.Login {
+    text-align: center;
+    color: white;
+    height: middle;
+    background-color: black;
+    width: 500px;
+    height: 425px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 25px;
+    padding-top: 25px;
+    padding-left: 35px;
+    padding-right: 35px;
+    /* padding-bottom: 35px; */
+}
+
+form.ui.form {
+    height: middle;
+}
