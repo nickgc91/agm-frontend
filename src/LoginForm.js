@@ -20,9 +20,13 @@ class LoginForm extends React.Component {
     API.signIn({ username, password })
     .then(data => {
       if (data.error) {
-        alert(data.error)
-      } else
-        this.props.history.push('/app')
+        throw Error(data.error)
+      } else {
+        this.props.signIn(data)
+        this.props.history.push('/app')}
+    })
+    .catch(error => {
+      alert(error)
     })
   }
 
@@ -33,10 +37,13 @@ class LoginForm extends React.Component {
     .then(data => {
       if (data.error) {
         alert(data.error)
-      } else
-        this.props.history.push('/app')
+      } else {
+        this.props.signIn(data)
+        this.props.history.push('/app') }
     })
   }
+
+
 
   render() {
 
