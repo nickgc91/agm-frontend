@@ -1,6 +1,8 @@
 import React from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import API from './API'
+import '../css/Login.css'
+import { connect } from 'react-redux'
 
 class LoginForm extends React.Component {
 
@@ -22,8 +24,9 @@ class LoginForm extends React.Component {
       if (data.error) {
         throw Error(data.error)
       } else {
+        this.props.history.push('/')
         this.props.signIn(data)
-        this.props.history.push('/app')}
+        }
     })
     .catch(error => {
       alert(error)
@@ -39,7 +42,7 @@ class LoginForm extends React.Component {
         alert(data.error)
       } else {
         this.props.signIn(data)
-        this.props.history.push('/app') }
+        this.props.history.push('/') }
     })
   }
 
@@ -53,6 +56,7 @@ class LoginForm extends React.Component {
       <h1>Create Account</h1>
       <form
         onSubmit={e => {
+          e.persist()
           e.preventDefault();
           this.handleCreateAccountSubmit(e)
         }}
@@ -133,4 +137,10 @@ class LoginForm extends React.Component {
 };
 }
 
-export default withRouter(LoginForm)
+
+const mapDispatchToProps = dispatch => ({
+  signIn: user => { dispatch({ type: 'SIGN_IN', payload: user})},
+  signOut: () => { dispatch({ type: 'SIGN_OUT' })}
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm));
