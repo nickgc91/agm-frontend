@@ -1,14 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Login from "./Login";
+import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter as Router } from "react-router-dom";
 
+import { Provider } from "react-redux";
+import store from "./store";
+
+store.subscribe(() => console.log(store.getState()))
+
+// store.dispatch({ type: 'SIGN_IN', payload: 'nicolas' })
+// store.dispatch({ type: 'SIGN_OUT' })
+
+
 ReactDOM.render(
-  <Router>
-    <Login />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 
