@@ -1,6 +1,4 @@
 
-
-
 const signIn = action => {
     localStorage.setItem("token", action.payload.token);
     return action.payload
@@ -22,6 +20,4 @@ export default (state = '', action) => {
         default:
             return state
     }
-
-     
 }
