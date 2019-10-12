@@ -3,6 +3,7 @@ const baseUrl= 'http://localhost:3000'
 const signinUrl = baseUrl + '/signin'
 const createAccountUrl = baseUrl + '/newAccount'
 const validateUrl = baseUrl + '/validate'
+const getUserDataUrl = baseUrl + '/getUserData'
 
 const get = url => fetch(url, {
     headers: {
@@ -24,12 +25,11 @@ return fetch(url, {
     return resp.json()})
 }
 
-const createAccount = (user) => post(createAccountUrl, user)
-const signIn = (user) => post(signinUrl, user)
+const createAccount = user => post(createAccountUrl, user)
+const signIn = user => post(signinUrl, user)
 
 const validate = () => get(validateUrl)
 
-window.validate = validate 
+const getUserData = () => get(getUserDataUrl)
 
-
-export default { signIn, createAccount, validate }
+export default { signIn, createAccount, validate, getUserData}

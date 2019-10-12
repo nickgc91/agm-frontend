@@ -2,8 +2,12 @@ import React from "react";
 import "../css/App.css";
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import API from './API'
 
 class StatusPage extends React.Component {
+
+  componentDidMount () {
+  }
 
   render() {
     if (!this.props.currentUser) return (<div>Loading user info</div>)
@@ -16,6 +20,7 @@ class StatusPage extends React.Component {
             <h2>WELCOME {this.props.currentUser.username}</h2>
             <button onClick={() => {
               this.props.signOut()
+              this.props.releaseUserData()
               this.props.history.push('/signin')
             }}>SIGN OUT</button>
           </div>
@@ -45,12 +50,14 @@ class StatusPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.user
+  currentUser: state.user,
+  userData: state.userData
 })
 
 const mapDispatchToProps = dispatch => ({
   signIn: user => { dispatch({ type: 'SIGN_IN', payload: user})},
-  signOut: () => { dispatch({ type: 'SIGN_OUT' })}
+  signOut: () => { dispatch({ type: 'SIGN_OUT' })},
+  releaseUserData: () => { dispatch({ type: 'RELEASE_USER_DATA'})}
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StatusPage));
