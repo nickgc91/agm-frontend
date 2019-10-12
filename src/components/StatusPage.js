@@ -7,7 +7,20 @@ import API from './API'
 class StatusPage extends React.Component {
 
   componentDidMount () {
+    this.getUserData()
   }
+
+  getUserData = () => {API.getUserData()
+    .then(data => {
+      if (data.error) {
+        throw Error(data.error);
+      } else {
+        this.props.giveMeUserData(data)
+      }
+    })
+    .catch(error => {
+      alert(error);
+    })}
 
   render() {
     if (!this.props.currentUser) return (<div>Loading user info</div>)
@@ -57,7 +70,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   signIn: user => { dispatch({ type: 'SIGN_IN', payload: user})},
   signOut: () => { dispatch({ type: 'SIGN_OUT' })},
-  releaseUserData: () => { dispatch({ type: 'RELEASE_USER_DATA'})}
+  releaseUserData: () => { dispatch({ type: 'RELEASE_USER_DATA'})},
+  giveMeUserData: user => { dispatch({ type: 'GIVE_ME_USER_DATA', payload: user })}
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StatusPage));
