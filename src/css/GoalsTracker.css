@@ -1,0 +1,35 @@
+
+.grid-container2 {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 150px 400px auto;
+    grid-template-areas:
+      "header header header header header"
+      "picture picture usergoals usergoals usergoals"
+      "footer footer footer footer footer";
+  }
+
+
+  .grid-item11 {
+    grid-area: header;
+    background-color: cadetblue;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .grid-item22 {
+    grid-area: picture;
+    padding: 30px;
+    text-align: center;
+    border-radius: 25px;
+  }
+
+  .grid-item33 {
+      grid-area: usergoals;
+      padding: 30px;
+      text-align: left;
+      border-radius: 25px;
+  }
+
+
+

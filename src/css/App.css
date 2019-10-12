@@ -1,39 +1,35 @@
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 200px 400px 400px auto;
+  grid-template-rows: 150px 400px 600px auto;
   grid-template-areas:
     "header header header header"
     "goalstracker goalstracker goalstracker updatefeed"
-    "accountabilitypartner accountabilitypartner accountabilitypartner updatefeed"
-    "lifestatus lifestatus journaling journaling"
+    "lifestatus lifestatus lifestatus updatefeed"
+    "accountabilitypartner accountabilitypartner journaling journaling"
     "footer footer footer footer";
 }
 
 .grid-item1 {
-  background-color: brown;
+  border-style: groove;
+  border-color: darkblue;
+  background-color: cadetblue;
   grid-area: header;
 }
 
 .grid-item2 {
-
-  background-color: turquoise;
   grid-area: goalstracker;
 }
 
 .grid-item3 {
-  background-color: black;
-  color: aliceblue;
   grid-area: updatefeed;
 }
 
 .grid-item4 {
-  background-color: green;
   grid-area: accountabilitypartner;
 }
 
 .grid-item5 {
-  background-color: burlywood;
   grid-area: lifestatus;
 }
 
@@ -51,4 +47,44 @@
   text-align: center;
   font-size: 30px;
   padding: 30px;
+}
+
+.goals-tracker {
+  border-style: solid;
+  background-color: cadetblue;
+  font-size: 30px;
+  padding: 30px;
+  height: 340px;
+  border-radius: 25px;
+}
+
+.status-updates {
+  background-color: cadetblue;
+  border-style: solid;
+  text-align: center;
+  font-size: 30px;
+  padding: 30px;
+  height: 740px;
+  border-radius: 25px;
+}
+
+
+.accountability-partner {
+  background-color: cadetblue;
+  border-style: solid;
+  text-align: center;
+  font-size: 30px;
+  padding: 30px;
+  height: 340px;
+  border-radius: 25px;
+}
+
+.life-status-tracker {
+  background-color: cadetblue;
+  border-style: solid;
+  text-align: center;
+  font-size: 30px;
+  padding: 15px;
+  height: 480px;
+  border-radius: 25px;
 }
