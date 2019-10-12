@@ -5,6 +5,8 @@ import LoginForm from "./components/LoginForm";
 import StatusPage from "./components/StatusPage";
 import API from "./components/API"
 import { connect } from 'react-redux'
+import GoalsTracker from './components/GoalsTracker'
+
 
 class App extends React.Component {
 
@@ -44,7 +46,14 @@ class App extends React.Component {
               {...routerProps}
             />
           )}
-        />{" "}
+        />
+        <Route
+          exact
+          path="/goals-tracker"
+          component={routerProps => {
+            return <GoalsTracker {...routerProps} />;
+          }}
+        />
       </div>
     );
   }

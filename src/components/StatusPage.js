@@ -3,6 +3,7 @@ import "../css/App.css";
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import API from './API'
+import Chart from './Chart'
 
 class StatusPage extends React.Component {
 
@@ -23,32 +24,50 @@ class StatusPage extends React.Component {
     })}
 
   render() {
-    if (!this.props.currentUser) return (<div>Loading user info</div>)
+    if (!this.props.currentUser || !this.props.userData) return (<div>Loading user info</div>)
 
     return (
       <div>
         <div className="grid-container">
           <div className="grid-item1">
-            <h1>1 NAV BAR</h1>
-            <h2>WELCOME {this.props.currentUser.username}</h2>
-            <button onClick={() => {
+            <button 
+              className="small ui button"
+              style={{ float: 'right' }}
+              onClick={() => {
               this.props.signOut()
               this.props.releaseUserData()
               this.props.history.push('/signin')
-            }}>SIGN OUT</button>
+            }}>Sign Out</button>
+            <br></br>
+            <h1>Welcome back {this.props.currentUser.username}</h1>
           </div>
           <div className="grid-item2">
-            <h1>2 GOALS TRACKER</h1>
-            <h2>I am a {this.props.potatoe}</h2>
+            <div className='goals-tracker'>
+              <h1>My Goals</h1>
+              <h3> Currently working on # of goals </h3>
+              <h3> Total # of goals completed: </h3>
+              <br />
+              <button 
+              className="small ui button"
+              onClick={() => this.props.history.push('/goals-tracker') }
+              >Update my goals..</button>
+            </div>
           </div>
           <div className="grid-item3">
+            <div className='status-updates'>
             <h1>3 STATUS UPDATES</h1>
+            </div>
           </div>
           <div className="grid-item4">
-            <h1>4 ACCOUNTABILITY PARTNER</h1>
+            <div className='accountability-partner'>
+              <h1>4 ACCOUNTABILITY PARTNER</h1>
+              <h3>My accountability partner is: </h3>
+            </div>
           </div>
           <div className="grid-item5">
-            <h1>5 LIFE STATUS TRACKER</h1>
+          <div className='life-status-tracker'>
+              <Chart />
+            </div>
           </div>
           <div className="grid-item6">
             <h1>6 JOURNALING</h1>
