@@ -3,9 +3,21 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/GoalsTracker.css";
 import API from "./API";
+import NavBar from './NavBar'
+import NewGoalForm from './NewGoalForm'
 
 class GoalsTracker extends React.Component {
   goals = [];
+
+  state = {
+    showNewGoalForm: false
+  }
+
+  hideNewGoalForm = () => {
+    this.setState({
+      showNewGoalForm: false
+    })
+  }
 
   componentDidMount() {
     this.getUserData();
@@ -29,15 +41,11 @@ class GoalsTracker extends React.Component {
     if (!this.props.userData) return <div>Loading user info</div>;
 
     return (
+      <div>
+        <NavBar />
       <div className="grid-container2">
         <div className="grid-item11">
           <h1>🔥 Your Current Goals 🔥</h1>
-          <button
-            onClick={() => this.props.history.push("/")}
-            className="small ui button"
-          >
-            Home
-          </button>
         </div>
         <img
           className="grid-item22"
@@ -54,7 +62,12 @@ class GoalsTracker extends React.Component {
               return <li><h3>{mygoal.goal}</h3></li>
             })}
           </ul>
+          <br></br>
+          <br></br>
+          {!this.state.showNewGoalForm ? <button onClick={() => this.setState({showNewGoalForm: true})} className="ui green button">Add New Goal</button> : null }
+          {this.state.showNewGoalForm ? <NewGoalForm hideNewGoalForm={this.hideNewGoalForm}/> : null }
         </div>
+      </div>
       </div>
     );
   }
