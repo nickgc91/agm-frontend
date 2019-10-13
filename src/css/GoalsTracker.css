@@ -2,7 +2,7 @@
 .grid-container2 {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 150px 400px auto;
+    grid-template-rows: 60px 400px auto;
     grid-template-areas:
       "header header header header header"
       "picture picture usergoals usergoals usergoals"
@@ -13,7 +13,7 @@
   .grid-item11 {
     grid-area: header;
     background-color: cadetblue;
-    padding: 30px;
+    padding: 12px;
     text-align: center;
   }
 

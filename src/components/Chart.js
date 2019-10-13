@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import API from "./API";
 
 
 
@@ -46,27 +45,6 @@ class Chart extends Component {
           }
         ]
       }
-    
-  
-
-
-  componentDidMount() {
-    this.getUserData();
-  }
-
-  getUserData = () => {
-    API.getUserData()
-      .then(data => {
-        if (data.error) {
-          throw Error(data.error);
-        } else {
-          this.props.giveMeUserData(data);
-        }
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
 
   
 
@@ -117,15 +95,9 @@ const mapStateToProps = state => ({
     userData: state.userData
   });
   
-  const mapDispatchToProps = dispatch => ({
-    giveMeUserData: user => {
-      dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
-    }
-  });
-  
   export default withRouter(
     connect(
       mapStateToProps,
-      mapDispatchToProps
+      null
     )(Chart)
   );

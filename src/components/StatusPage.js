@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import API from './API'
 import Chart from './Chart'
+import NavBar from './NavBar'
+
 
 class StatusPage extends React.Component {
 
@@ -28,18 +30,12 @@ class StatusPage extends React.Component {
 
     return (
       <div>
+        <NavBar />
         <div className="grid-container">
           <div className="grid-item1">
-            <button 
-              className="small ui button"
-              style={{ float: 'right' }}
-              onClick={() => {
-              this.props.signOut()
-              this.props.releaseUserData()
-              this.props.history.push('/signin')
-            }}>Sign Out</button>
-            <br></br>
-            <h1>Welcome back {this.props.currentUser.username}</h1>
+            <div style={{ bordeStyle: 'solid' }}>
+            <h2>&#128513; Welcome back {this.props.currentUser.username} &#128513;</h2>
+            </div>
           </div>
           <div className="grid-item2">
             <div className='goals-tracker'>
@@ -55,13 +51,14 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item3">
             <div className='status-updates'>
-            <h1>3 STATUS UPDATES</h1>
+            <h1>Latest Activity</h1>
             </div>
           </div>
           <div className="grid-item4">
             <div className='accountability-partner'>
               <h1>4 ACCOUNTABILITY PARTNER</h1>
               <h3>My accountability partner is: </h3>
+              <h3>The last time we talked was: </h3>
             </div>
           </div>
           <div className="grid-item5">
@@ -70,7 +67,9 @@ class StatusPage extends React.Component {
             </div>
           </div>
           <div className="grid-item6">
+            <div className='journaling'>
             <h1>6 JOURNALING</h1>
+            </div>
           </div>
           <div className="grid-item7">
             <h1>7 FOOTER</h1>
