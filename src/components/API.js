@@ -4,6 +4,7 @@ const signinUrl = baseUrl + '/signin'
 const createAccountUrl = baseUrl + '/newAccount'
 const validateUrl = baseUrl + '/validate'
 const getUserDataUrl = baseUrl + '/getUserData'
+const createNewGoalUrl = baseUrl + '/createNewGoal'
 
 const get = url => fetch(url, {
     headers: {
@@ -32,4 +33,6 @@ const validate = () => get(validateUrl)
 
 const getUserData = () => get(getUserDataUrl)
 
-export default { signIn, createAccount, validate, getUserData}
+const createNewGoal = goal => post(createNewGoalUrl, goal)
+
+export default { signIn, createAccount, validate, getUserData, createNewGoal}

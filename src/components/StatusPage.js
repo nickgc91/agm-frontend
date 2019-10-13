@@ -68,7 +68,8 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item6">
             <div className='journaling'>
-            <h1>6 JOURNALING</h1>
+            <h1>My Journal</h1>
+            <h3>Last journal entry: </h3>
             </div>
           </div>
           <div className="grid-item7">

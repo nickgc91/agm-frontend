@@ -3,21 +3,21 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/GoalsTracker.css";
 import API from "./API";
-import NavBar from './NavBar'
-import NewGoalForm from './NewGoalForm'
+import NavBar from "./NavBar";
+import NewGoalForm from "./NewGoalForm";
 
 class GoalsTracker extends React.Component {
   goals = [];
 
   state = {
     showNewGoalForm: false
-  }
+  };
 
   hideNewGoalForm = () => {
     this.setState({
       showNewGoalForm: false
-    })
-  }
+    });
+  };
 
   componentDidMount() {
     this.getUserData();
@@ -43,31 +43,51 @@ class GoalsTracker extends React.Component {
     return (
       <div>
         <NavBar />
-      <div className="grid-container2">
-        <div className="grid-item11">
-          <h1>🔥 Your Current Goals 🔥</h1>
+        <div className="grid-container2">
+          <div className="grid-item11">
+            <h1>🔥 Your Current Goals 🔥</h1>
+          </div>
+          <img
+            className="grid-item22"
+            style={{ borderRadius: "20%" }}
+            src="https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+            alt="Smiley face"
+            height="700"
+            width="500"
+          />
+          <div className="grid-item33">
+            <h2>Goals:</h2>
+            <ul style={{ textAlign: "left", display: "inline-block" }}>
+              {this.props.userData.goals.map(mygoal => {
+                return (
+                  <div>
+                    <li>
+                      <h3 style={{display: 'inline'}}>{mygoal.goal}     </h3><span></span><button className="ui mini button">X</button>
+                      <ul>
+                        {mygoal.action.map(myAction => {
+                        return <li><h4>{myAction}</h4></li>
+                      })} </ul>
+                    </li>
+                    <br></br>
+                  </div>
+                );
+              })}
+            </ul>
+            <br></br>
+            <br></br>
+            {!this.state.showNewGoalForm ? (
+              <button
+                onClick={() => this.setState({ showNewGoalForm: true })}
+                className="ui green button"
+              >
+                Add New Goal
+              </button>
+            ) : null}
+            {this.state.showNewGoalForm ? (
+              <NewGoalForm hideNewGoalForm={this.hideNewGoalForm} />
+            ) : null}
+          </div>
         </div>
-        <img
-          className="grid-item22"
-          style={{ borderRadius: "20%" }}
-          src="https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-          alt="Smiley face"
-          height="700"
-          width="500"
-        />
-        <div className="grid-item33">
-          <h2>Goals:</h2>
-          <ul style={{ textAlign: "left", display: "inline-block" }}>
-            {this.props.userData.goals.map(mygoal => {
-              return <li><h3>{mygoal.goal}</h3></li>
-            })}
-          </ul>
-          <br></br>
-          <br></br>
-          {!this.state.showNewGoalForm ? <button onClick={() => this.setState({showNewGoalForm: true})} className="ui green button">Add New Goal</button> : null }
-          {this.state.showNewGoalForm ? <NewGoalForm hideNewGoalForm={this.hideNewGoalForm}/> : null }
-        </div>
-      </div>
       </div>
     );
   }
