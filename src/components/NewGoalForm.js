@@ -1,5 +1,7 @@
 import React from "react";
 import API from './API'
+import { TextArea } from 'semantic-ui-react'
+import { withRouter } from "react-router-dom";
 
 class NewGoalForm extends React.Component {
 
@@ -10,20 +12,27 @@ class NewGoalForm extends React.Component {
     actionItem3: ""
   };
 
+  handleChange = e => { 
+    this.setState({ [e.target.name]: e.target.value})}
+
   handleNewGoalSubmit = e => {
     const { goalName, actionItem1, actionItem2, actionItem3 } = this.state;
-    API.postNewGoal({ goalName, actionItem1, actionItem2, actionItem3})
+    API.createNewGoal({ goalName, actionItem1, actionItem2, actionItem3})
       .then(data => {
         if (data.error) {
           throw Error(data.error);
         } else {
-          return null;
+          console.log(data)
+          this.props.hideNewGoalForm()
+          this.props.history.push('/goals-tracker')
         }
       })
       .catch(error => {
         alert(error);
       });
   };
+
+  
 
   render() {
       return (
@@ -39,34 +48,33 @@ class NewGoalForm extends React.Component {
         <label>Goal Name</label>
         <input
           onChange={e => this.handleChange(e)}
-          style={{ width: 200 }}
+          style={{ width: 300 }}
           type="text"
           name="goalName"
-          placeholder="goal name"
+          placeholder="Type your goal here.."
         />{" "}
         <label>Action Item 1</label>
-        <input
-          onChange={e => this.handleChange(e)}
-          style={{ width: 200 }}
-          type="text"
-          name="actionItem1"
-          placeholder="action-item-1"
-        />{" "}
+        <TextArea placeholder='Tell us more' 
+        onChange={e => this.handleChange(e)}
+        style={{ width: 600 }}
+        type="TextArea"
+        name="actionItem1"
+        placeholder="What is one action that you need to take to achieve this goal?"/>
         <label>Action Item 2</label>
-        <input
+        <TextArea placeholder='Tell us more' 
           onChange={e => this.handleChange(e)}
-          style={{ width: 200 }}
+          style={{ width: 600 }}
           type="text"
-          name="action-item-2"
-          placeholder="actionItem2"
+          name="actionItem2"
+          placeholder="What is a second action that you need to take to achieve this goal?"
         />{" "}
         <label>Action Item 3</label>
-        <input
+        <TextArea placeholder='Tell us more' 
           onChange={e => this.handleChange(e)}
-          style={{ width: 200 }}
+          style={{ width: 600 }}
           type="text"
           name="actionItem3"
-          placeholder="action-item-3"
+          placeholder="What is a third action that you need to take to achieve this goal?"
         />
       </div>
       <button className="ui green button">Add New Goal</button>
@@ -76,4 +84,4 @@ class NewGoalForm extends React.Component {
     }
 };
 
-export default NewGoalForm;
+export default withRouter(NewGoalForm);

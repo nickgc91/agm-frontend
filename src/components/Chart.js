@@ -62,8 +62,9 @@ class Chart extends Component {
             title: {
               display: true,
               fontSize: 30,
-              text: 'Life Status Tracker', 
-              padding: 15
+              text: 'My Life Status Tracker', 
+              padding: 15,
+              fontColor: 'black'
             },
             fontColor: 'black',
             legend: {
@@ -75,12 +76,14 @@ class Chart extends Component {
                         fontSize: 16,
                         beginAtZero:true,
                         min: 0,
-                        max: 10    
+                        max: 10,
+                        fontColor: 'black'    
                     }
                   }],
                   xAxes: [{
                     ticks: {
-                        fontSize: 16,   
+                        fontSize: 16,  
+                        fontColor: 'black' 
                     }
                   }]
                }
