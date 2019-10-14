@@ -14,6 +14,20 @@ class GoalsTracker extends React.Component {
     showActionItems: false
   };
 
+  handleCompletedActionItem = itemId => {
+    API.updateItemActionIsCompleted({id: itemId})
+    .then(data => {
+      if (data.error) {
+        throw Error(data.error);
+      } else {
+        this.getUserData()
+      }
+    })
+    .catch(error => {
+      alert(error);
+    })
+  }
+
   showActionItems = () => {
     this.setState({
       showActionItems: !this.state.showActionItems
@@ -90,7 +104,7 @@ class GoalsTracker extends React.Component {
                       <h4 style={{ display: 'inline'}}>Completion Status: {mygoal.goal[2].completion_status}</h4>
                       {this.state.showActionItems ? <ul>
                         {mygoal.action.map(myAction => { return (
-                          myAction.isComplete ? <li><h4 style={{ textDecoration: 'line-through'}}>{myAction.action}</h4></li> : <li><h4>{myAction.action}</h4></li> )
+                        myAction.isComplete ? <li><h4 style={{ textDecoration: 'line-through'}}>{myAction.action} <i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></h4></li> : (<li><h4>{myAction.action} <button onClick={() => this.handleCompletedActionItem(myAction.id)}>Action Completed</button></h4></li>) )
                       })} </ul> : null}
                     </li>
                     <br></br>

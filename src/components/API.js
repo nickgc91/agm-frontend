@@ -7,6 +7,7 @@ const getUserDataUrl = baseUrl + '/getUserData'
 const getAccountabilityPartnerNameUrl = baseUrl + '/getAccPartner'
 const createNewGoalUrl = baseUrl + '/createNewGoal'
 const deleteGoalUrl = baseUrl + '/deleteGoal'
+const updateItemActionIsCompletedUrl = baseUrl + '/updateActionItemIsCompleted'
 
 
 const get = url => fetch(url, {
@@ -29,6 +30,19 @@ return fetch(url, {
     return resp.json()})
 }
 
+const patch = (url, data) => 
+{ 
+return fetch(url, {
+    method: 'PATCH',
+    headers: { 
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('token')
+    },
+    body: JSON.stringify(data)
+}).then(resp => {
+    return resp.json()})
+}
+
 const createAccount = user => post(createAccountUrl, user)
 const signIn = user => post(signinUrl, user)
 
@@ -40,7 +54,7 @@ const getAccountabilityPartnerName = () => get(getAccountabilityPartnerNameUrl)
 const createNewGoal = goal => post(createNewGoalUrl, goal)
 const deleteGoal = goal => post(deleteGoalUrl, goal)
 
+const updateItemActionIsCompleted = itemId => patch(updateItemActionIsCompletedUrl, itemId)
 
 
-
-export default { signIn, createAccount, validate, getUserData, getAccountabilityPartnerName, createNewGoal, deleteGoal }
+export default { signIn, createAccount, validate, getUserData, getAccountabilityPartnerName, createNewGoal, deleteGoal, updateItemActionIsCompleted}
