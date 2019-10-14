@@ -1,0 +1,32 @@
+
+
+
+.grid-container4 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 75px 500px;
+    grid-template-areas:
+      "title title"
+      "blog write";
+  }
+
+  .grid-item41 {
+    grid-area: title;
+    text-align: center;
+    background-color: cadetblue;
+    padding: 20px;
+  }
+  
+  .grid-item42 {
+    padding: 20px;
+    text-align: center;
+    grid-area: blog;
+  }
+
+  .grid-item43 {
+    padding: 20px;
+    text-align: center;
+    grid-area: write;
+  }
+
+  
