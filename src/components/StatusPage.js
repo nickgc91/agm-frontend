@@ -9,6 +9,16 @@ import NavBar from './NavBar'
 
 class StatusPage extends React.Component {
 
+  state = {
+    accountability_partner: ""
+  }
+
+  // setAccountabilityPartnerToEmpty = () => {
+  //   this.setState({
+  //     accountability_partner: ""
+  //   })
+  // }
+
   componentDidMount () {
     this.getUserData()
   }
@@ -25,23 +35,31 @@ class StatusPage extends React.Component {
       alert(error);
     })}
 
+ 
+
+
   render() {
+
+    const { userData, currentUser } = this.props
+
     if (!this.props.currentUser || !this.props.userData) return (<div>Loading user info</div>)
 
+    
     return (
       <div>
-        <NavBar />
+        <NavBar setAccountabilityPartnerToEmpty={this.setAccountabilityPartnerToEmpty}/>
         <div className="grid-container">
           <div className="grid-item1">
             <div style={{ bordeStyle: 'solid' }}>
-            <h2>&#128513; Welcome back {this.props.currentUser.username} &#128513;</h2>
+            <h2>&#128513; Welcome back {currentUser.username} &#128513;</h2>
             </div>
           </div>
           <div className="grid-item2">
             <div className='goals-tracker'>
               <h1>My Goals</h1>
-              <h3> Currently working on # of goals </h3>
-              <h3> Total # of goals completed: </h3>
+              <h3> You are currently working on {userData.goals[0].numOfGoals} goals.</h3>
+              {/* <h3> Total # of goals completed: </h3> */}
+              <h3>Latest goal --> 🔥 {userData.goals[userData.goals.length-1].goal[1]} 🔥</h3>
               <br />
               <button 
               className="small ui button"
@@ -56,8 +74,7 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item4">
             <div className='accountability-partner'>
-              <h1>4 ACCOUNTABILITY PARTNER</h1>
-              <h3>My accountability partner is: </h3>
+              <h1>My accountability partner is: {userData.accountability_partner} </h1>
               <h3>The last time we talked was: </h3>
             </div>
           </div>

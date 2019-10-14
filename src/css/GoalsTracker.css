@@ -25,6 +25,8 @@
   }
 
   .grid-item33 {
+      width: 500;
+      word-wrap: break-word;
       grid-area: usergoals;
       padding: 30px;
       text-align: left;
