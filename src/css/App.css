@@ -71,8 +71,9 @@
   background-color: cadetblue;
   border-style: solid;
   text-align: center;
+  padding: 20px;
   font-size: 30px;
-  height: 340px;
+  height: 200px;
   border-radius: 25px;
 }
 
@@ -90,6 +91,6 @@
   border-style: solid;
   text-align: center;
   font-size: 30px;
-  height: 340px;
+  height: 200px;
   border-radius: 25px;
 }

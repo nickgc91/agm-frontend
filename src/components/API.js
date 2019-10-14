@@ -4,7 +4,10 @@ const signinUrl = baseUrl + '/signin'
 const createAccountUrl = baseUrl + '/newAccount'
 const validateUrl = baseUrl + '/validate'
 const getUserDataUrl = baseUrl + '/getUserData'
+const getAccountabilityPartnerNameUrl = baseUrl + '/getAccPartner'
 const createNewGoalUrl = baseUrl + '/createNewGoal'
+const deleteGoalUrl = baseUrl + '/deleteGoal'
+
 
 const get = url => fetch(url, {
     headers: {
@@ -32,7 +35,12 @@ const signIn = user => post(signinUrl, user)
 const validate = () => get(validateUrl)
 
 const getUserData = () => get(getUserDataUrl)
+const getAccountabilityPartnerName = () => get(getAccountabilityPartnerNameUrl)
 
 const createNewGoal = goal => post(createNewGoalUrl, goal)
+const deleteGoal = goal => post(deleteGoalUrl, goal)
 
-export default { signIn, createAccount, validate, getUserData, createNewGoal}
+
+
+
+export default { signIn, createAccount, validate, getUserData, getAccountabilityPartnerName, createNewGoal, deleteGoal }

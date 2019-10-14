@@ -10,7 +10,14 @@ class GoalsTracker extends React.Component {
   goals = [];
 
   state = {
-    showNewGoalForm: false
+    showNewGoalForm: false,
+    showActionItems: false
+  };
+
+  showActionItems = () => {
+    this.setState({
+      showActionItems: !this.state.showActionItems
+    });
   };
 
   hideNewGoalForm = () => {
@@ -18,6 +25,21 @@ class GoalsTracker extends React.Component {
       showNewGoalForm: false
     });
   };
+
+  handleDeleteClick = e => {
+    const goalId = e._dispatchInstances.key
+    API.deleteGoal({goalId})
+    .then(data => {
+      if (data.error) {
+        throw Error(data.error);
+      } else {
+        this.props.history.push('/goals-tracker')
+      }
+    })
+    .catch(error => {
+      alert(error);
+    })
+  }
 
   componentDidMount() {
     this.getUserData();
@@ -57,22 +79,33 @@ class GoalsTracker extends React.Component {
           />
           <div className="grid-item33">
             <h2>Goals:</h2>
+            <button onClick={() => this.showActionItems()} className="ui mini button">Show Action Items</button>
+            <div>
             <ul style={{ textAlign: "left", display: "inline-block" }}>
               {this.props.userData.goals.map(mygoal => {
                 return (
                   <div>
                     <li>
-                      <h3 style={{display: 'inline'}}>{mygoal.goal}     </h3><span></span><button className="ui mini button">X</button>
-                      <ul>
-                        {mygoal.action.map(myAction => {
-                        return <li><h4>{myAction}</h4></li>
-                      })} </ul>
+                      <h3>{mygoal.goal[1]} </h3>  
+                      <h4 style={{ display: 'inline'}}>Completion Status: {mygoal.goal[2].completion_status}</h4>
+                      {this.state.showActionItems ? <ul>
+                        {mygoal.action.map(myAction => { return (
+                          myAction.isComplete ? <li><h4 style={{ textDecoration: 'line-through'}}>{myAction.action}</h4></li> : <li><h4>{myAction.action}</h4></li> )
+                      })} </ul> : null}
                     </li>
                     <br></br>
+                    <button 
+                      key={mygoal.goal[0]}
+                      className="ui mini red button"
+                      onClick={e => this.handleDeleteClick(e)}
+                      >Delete Goal</button>
+                      <br></br>
+                      <br></br>
+                      <br></br>
                   </div>
                 );
               })}
-            </ul>
+            </ul> </div>
             <br></br>
             <br></br>
             {!this.state.showNewGoalForm ? (
