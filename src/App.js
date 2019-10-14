@@ -6,6 +6,7 @@ import StatusPage from "./components/StatusPage";
 import API from "./components/API"
 import { connect } from 'react-redux'
 import GoalsTracker from './components/GoalsTracker'
+import Journaling from './components/Journaling'
 
 
 class App extends React.Component {
@@ -52,6 +53,13 @@ class App extends React.Component {
           path="/goals-tracker"
           component={routerProps => {
             return <GoalsTracker {...routerProps} />;
+          }}
+        />
+        <Route
+          exact
+          path="/journaling"
+          component={routerProps => {
+            return <Journaling {...routerProps} />;
           }}
         />
       </div>

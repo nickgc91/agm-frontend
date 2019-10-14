@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import API from './API'
 import Chart from './Chart'
 import NavBar from './NavBar'
+ 
 
 
 class StatusPage extends React.Component {
@@ -12,12 +13,6 @@ class StatusPage extends React.Component {
   state = {
     accountability_partner: ""
   }
-
-  // setAccountabilityPartnerToEmpty = () => {
-  //   this.setState({
-  //     accountability_partner: ""
-  //   })
-  // }
 
   componentDidMount () {
     this.getUserData()
@@ -58,11 +53,10 @@ class StatusPage extends React.Component {
             <div className='goals-tracker'>
               <h1>My Goals</h1>
               <h3> You are currently working on {userData.goals[0].numOfGoals} goals.</h3>
-              {/* <h3> Total # of goals completed: </h3> */}
               <h3>Latest goal --> 🔥 {userData.goals[userData.goals.length-1].goal[1]} 🔥</h3>
               <br />
               <button 
-              className="small ui button"
+              className="black ui button"
               onClick={() => this.props.history.push('/goals-tracker') }
               >Update my goals..</button>
             </div>
@@ -87,6 +81,10 @@ class StatusPage extends React.Component {
             <div className='journaling'>
             <h1>My Journal</h1>
             <h3>Last journal entry: </h3>
+            <button 
+              className="black ui button"
+              onClick={() => this.props.history.push('/journaling') }
+              >Do some journaling..</button>
             </div>
           </div>
           <div className="grid-item7">

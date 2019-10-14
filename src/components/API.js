@@ -8,6 +8,7 @@ const getAccountabilityPartnerNameUrl = baseUrl + '/getAccPartner'
 const createNewGoalUrl = baseUrl + '/createNewGoal'
 const deleteGoalUrl = baseUrl + '/deleteGoal'
 const updateItemActionIsCompletedUrl = baseUrl + '/updateActionItemIsCompleted'
+const createNewJournalEntryUrl = baseUrl + '/createNewJournalEntry'
 
 
 const get = url => fetch(url, {
@@ -56,5 +57,9 @@ const deleteGoal = goal => post(deleteGoalUrl, goal)
 
 const updateItemActionIsCompleted = itemId => patch(updateItemActionIsCompletedUrl, itemId)
 
+const createNewJournalEntry = journalEntry => post(createNewJournalEntryUrl, journalEntry)
 
-export default { signIn, createAccount, validate, getUserData, getAccountabilityPartnerName, createNewGoal, deleteGoal, updateItemActionIsCompleted}
+export default { signIn, createAccount, validate, getUserData,
+    getAccountabilityPartnerName, createNewGoal, 
+    deleteGoal, updateItemActionIsCompleted,
+    createNewJournalEntry }
