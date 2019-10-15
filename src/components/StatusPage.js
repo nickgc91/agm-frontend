@@ -11,11 +11,28 @@ import NavBar from './NavBar'
 class StatusPage extends React.Component {
 
   state = {
-    accountability_partner: ""
+    accountability_partner: "",
+    lastMeeting: ""
   }
 
   componentDidMount () {
     this.getUserData()
+  }
+
+  handleDateUpdateClick = () => {
+    let element = document.getElementById('date')
+    let date = element.value
+    API.updateDate({date: date})
+    .then(data => {
+      if (data.error) {
+        throw Error(data.error);
+      } else {
+        this.getUserData()
+      }
+    })
+    .catch(error => {
+      alert(error);
+    })
   }
 
   getUserData = () => {API.getUserData()
@@ -53,7 +70,9 @@ class StatusPage extends React.Component {
             <div className='goals-tracker'>
               <h1>My Goals</h1>
               <h3> You are currently working on {userData.goals[0].numOfGoals} goals.</h3>
-              <h3>Latest goal --> 🔥 {userData.goals[userData.goals.length-1].goal[1]} 🔥</h3>
+              <h3>Latest goal --> 🔥 {
+                userData.goals[userData.goals.length-1].goal[1]
+              } 🔥</h3>
               <br />
               <button 
               className="black ui button"
@@ -69,7 +88,19 @@ class StatusPage extends React.Component {
           <div className="grid-item4">
             <div className='accountability-partner'>
               <h1>My accountability partner is: {userData.accountability_partner} </h1>
-              <h3>The last time we talked was: </h3>
+              <h3>The last time we talked was: {userData.last_meeting}</h3>
+              <input 
+              className= 'field'
+              id='date'
+              type="date">
+              </input>
+              <br></br>
+              <br></br>
+              <button
+              onClick={() => this.handleDateUpdateClick()}
+              className="black ui button">
+                Update
+              </button>
             </div>
           </div>
           <div className="grid-item5">
