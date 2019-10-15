@@ -19,7 +19,7 @@ class App extends React.Component {
             throw Error(data.error);
           } else {
             this.props.signIn(data);
-            this.props.history.push("/")
+            // this.props.history.push("/")
           }
         })
         .catch(error => {

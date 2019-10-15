@@ -8,7 +8,7 @@ import { TextArea } from "semantic-ui-react";
 
 class Journaling extends React.Component {
   componentDidMount() {
-    // this.props.giveMeUserData()
+    this.getUserData()
   }
 
   state = {
