@@ -19,15 +19,34 @@ class App extends React.Component {
             throw Error(data.error);
           } else {
             this.props.signIn(data);
-            // this.props.history.push("/")
+            this.getStatusUpdate()
           }
         })
         .catch(error => {
           alert(error);
           this.props.history.push("/signin")
         });
+    } else {
     }
   }
+
+  getStatusUpdate = () => {
+    API.provideMastermindUpdates()
+        .then(data => {
+          if (data.error) {
+            throw Error(data.error);
+          } else { console.log(data)
+              data.map(array => { return array.map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
+           )})
+          }
+            }
+           )
+        .catch(error => {
+          alert(error);
+        });
+      }
+
+
 
   render() {
     return (
@@ -71,7 +90,11 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   signIn: user => { dispatch({ type: 'SIGN_IN', payload: user})},
+  addUpdate: update => { dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
+  }
 })
+
+
 
 
 export default withRouter(connect(null, mapDispatchToProps)(App));

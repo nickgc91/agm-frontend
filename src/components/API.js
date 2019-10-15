@@ -11,6 +11,7 @@ const updateItemActionIsCompletedUrl = baseUrl + '/updateActionItemIsCompleted'
 const createNewJournalEntryUrl = baseUrl + '/createNewJournalEntry'
 const updateDateUrl = baseUrl + '/updateAccountabilityDate'
 const lifeStatusUpdateUrl = baseUrl + '/lifeStatusUpdate'
+const provideMastermindUpdatesUrl = baseUrl + '/provideMastermindUpdates'
 
 const get = url => fetch(url, {
     headers: {
@@ -64,7 +65,10 @@ const updateDate = date => patch(updateDateUrl, date)
 
 const lifeStatusUpdate = data => patch(lifeStatusUpdateUrl, data)
 
+const provideMastermindUpdates = () => get(provideMastermindUpdatesUrl)
+
 export default { signIn, createAccount, validate, getUserData,
     getAccountabilityPartnerName, createNewGoal, 
     deleteGoal, updateItemActionIsCompleted,
-    createNewJournalEntry, updateDate, lifeStatusUpdate }
+    createNewJournalEntry, updateDate, lifeStatusUpdate, 
+    provideMastermindUpdates}
