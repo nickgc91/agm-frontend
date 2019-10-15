@@ -16,7 +16,9 @@ class StatusPage extends React.Component {
   }
 
   componentDidMount () {
-    this.getUserData()
+    if (localStorage.getItem('token')) {
+      this.getUserData()
+    }
   }
 
   handleDateUpdateClick = () => {
