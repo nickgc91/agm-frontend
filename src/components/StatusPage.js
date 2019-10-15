@@ -50,7 +50,7 @@ class StatusPage extends React.Component {
   };
 
   render() {
-    const { userData, currentUser } = this.props;
+    const { userData, currentUser, masterStatusUpdates } = this.props;
 
     if (!this.props.currentUser || !this.props.userData)
       return <div>Loading user info</div>;
@@ -90,6 +90,7 @@ class StatusPage extends React.Component {
           <div className="grid-item3">
             <div className="status-updates">
               <h1>Latest Activity</h1>
+    {masterStatusUpdates.map(update => {return <h4>{update}</h4>})}
             </div>
           </div>
           <div className="grid-item4">
@@ -150,7 +151,8 @@ class StatusPage extends React.Component {
 
 const mapStateToProps = state => ({
   currentUser: state.user,
-  userData: state.userData
+  userData: state.userData,
+  masterStatusUpdates: state.mastermindStatusUpdates
 });
 
 const mapDispatchToProps = dispatch => ({

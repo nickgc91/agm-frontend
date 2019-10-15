@@ -27,7 +27,7 @@ class Journaling extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-
+            this.props.addUpdate(`${this.props.userData.username} wrote a new journal entry called ${title}`)
             this.getUserData()
         }
       })
@@ -146,6 +146,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   giveMeUserData: user => {
     dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
+  },
+  addUpdate: update => {
+    dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
   }
 });
 

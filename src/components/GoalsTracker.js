@@ -11,7 +11,8 @@ class GoalsTracker extends React.Component {
 
   state = {
     showNewGoalForm: false,
-    showActionItems: false
+    showActionItems: false,
+    showToggleButton: true
   };
 
   handleCompletedActionItem = itemId => {
@@ -93,7 +94,7 @@ class GoalsTracker extends React.Component {
           />
           <div className="grid-item33">
             <h2>Goals:</h2>
-            <button onClick={() => this.showActionItems()} className="ui mini button">Show Action Items</button>
+    { this.props.userData.goals[0].numOfGoals === 0 ? null : <button onClick={() => this.showActionItems()} className="ui mini button">Show Action Items</button> }
             <div>
             <ul style={{ textAlign: "left", display: "inline-block" }}>
               {this.props.userData.goals.map(mygoal => {
@@ -101,7 +102,7 @@ class GoalsTracker extends React.Component {
                   <div key={mygoal.goal[0]}>
                     <li>
                       <h3>{mygoal.goal[1]} </h3>  
-                      <h4 style={{ display: 'inline'}}>Completion Status: {mygoal.goal[2].completion_status}</h4>
+                { this.props.userData.goals[0].numOfGoals === 0 ? null : <h4 style={{ display: 'inline'}}>Completion Status: {mygoal.goal[2].completion_status}</h4> }
                       {/* this next part of code checks if the user wants to see the action items for their goals. 
                       If the goal is completed it is striked out as complete. This logic also looks at whether 
                       the action item is an empty string and does not display it if it is an empty string. */}
@@ -115,11 +116,11 @@ class GoalsTracker extends React.Component {
                        })} </ul> : null}
                     </li>
                     <br></br>
-                    <button 
+                    { this.props.userData.goals[0].numOfGoals === 0 ? null : <button 
                       key={mygoal.goal[0]}
                       className="ui mini red button"
                       onClick={e => this.handleDeleteClick(e)}
-                      >Delete Goal</button>
+                    >Delete Goal</button> }
                       <br></br>
                       <br></br>
                       <br></br>
