@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
     API.createAccount({ username, email, password, accountability_partner })
     .then(data => {
       if (data.error) {
-        alert(data.error)
+        this.props.history.push('/signin')
       } else {
         this.props.signIn(data)
         this.props.history.push('/') }

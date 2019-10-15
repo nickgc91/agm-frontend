@@ -23,8 +23,7 @@ class NewGoalForm extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-          let username = this.props.userData.username
-          this.props.addUpdate(`${username} just created a new goal for himself: ${goalName}.`)
+          this.getStatusUpdate()
           this.props.hideNewGoalForm()
           this.props.history.push('/goals-tracker')
         }
@@ -33,6 +32,22 @@ class NewGoalForm extends React.Component {
         alert(error);
       });
   };
+
+  getStatusUpdate = () => {
+    API.provideMastermindUpdates()
+        .then(data => {
+          if (data.error) {
+            throw Error(data.error);
+          } else { console.log(data)
+              data.map(array => { return array.reverse().map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
+           )})
+          }
+            }
+           )
+        .catch(error => {
+          alert(error);
+        });
+      }
 
   
 

@@ -16,6 +16,8 @@ class StatusPage extends React.Component {
     if (localStorage.getItem("token")) {
       this.getUserData();
     }
+
+    
   }
 
   handleDateUpdateClick = () => {
@@ -33,6 +35,7 @@ class StatusPage extends React.Component {
         alert(error);
       });
   };
+
 
 
   getUserData = () => {
@@ -90,7 +93,7 @@ class StatusPage extends React.Component {
           <div className="grid-item3">
             <div className="status-updates">
               <h1>Latest Activity</h1>
-    {masterStatusUpdates.map(update => {return <h4>{update}</h4>})}
+    {masterStatusUpdates.map((update, index) => {return <h4 key={index}>{update}</h4>})}
             </div>
           </div>
           <div className="grid-item4">
@@ -156,17 +159,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signIn: user => {
-    dispatch({ type: "SIGN_IN", payload: user });
-  },
-  signOut: () => {
-    dispatch({ type: "SIGN_OUT" });
-  },
-  releaseUserData: () => {
-    dispatch({ type: "RELEASE_USER_DATA" });
-  },
   giveMeUserData: user => {
     dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
+  },
+  addUpdate: update => {
+    dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
   }
 });
 

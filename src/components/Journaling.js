@@ -27,14 +27,31 @@ class Journaling extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-            this.props.addUpdate(`${this.props.userData.username} wrote a new journal entry called ${title}`)
             this.getUserData()
+            this.getStatusUpdate()
         }
       })
       .catch(error => {
         alert(error);
       });
   };
+
+
+  getStatusUpdate = () => {
+    API.provideMastermindUpdates()
+        .then(data => {
+          if (data.error) {
+            throw Error(data.error);
+          } else { console.log(data)
+              data.map(array => { return array.reverse().map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
+           )})
+          }
+            }
+           )
+        .catch(error => {
+          alert(error);
+        });
+      }
 
 
   getUserData = () => {
