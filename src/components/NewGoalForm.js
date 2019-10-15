@@ -2,6 +2,7 @@ import React from "react";
 import API from './API'
 import { TextArea } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class NewGoalForm extends React.Component {
 
@@ -22,7 +23,8 @@ class NewGoalForm extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-          console.log(data)
+          let username = this.props.userData.username
+          this.props.addUpdate(`${username} just created a new goal for himself: ${goalName}.`)
           this.props.hideNewGoalForm()
           this.props.history.push('/goals-tracker')
         }
@@ -81,4 +83,22 @@ class NewGoalForm extends React.Component {
     }
 };
 
-export default withRouter(NewGoalForm);
+
+const mapStateToProps = state => ({
+  userData: state.userData
+});
+
+const mapDispatchToProps = dispatch => ({
+  addUpdate: update => {
+    dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
+  }
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(NewGoalForm)
+);
+
+
