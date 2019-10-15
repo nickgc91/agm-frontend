@@ -1,7 +1,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows:85px 360px 500px 300px auto;
+  grid-template-rows:85px 360px 550px 300px auto;
   grid-template-areas:
     "header header header header"
     "goalstracker goalstracker goalstracker updatefeed"
@@ -82,7 +82,7 @@
   border-style: solid;
   text-align: center;
   font-size: 30px;
-  height: 480px;
+  height: 530px;
   border-radius: 25px;
 }
 

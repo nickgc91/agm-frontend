@@ -81,7 +81,7 @@ class GoalsTracker extends React.Component {
         <NavBar />
         <div className="grid-container2">
           <div className="grid-item11">
-            <h1>🔥 Your Current Goals 🔥</h1>
+            <h1> Your Current Goals </h1>
           </div>
           <img
             className="grid-item22"
@@ -98,14 +98,21 @@ class GoalsTracker extends React.Component {
             <ul style={{ textAlign: "left", display: "inline-block" }}>
               {this.props.userData.goals.map(mygoal => {
                 return (
-                  <div>
+                  <div key={mygoal.goal[0]}>
                     <li>
                       <h3>{mygoal.goal[1]} </h3>  
                       <h4 style={{ display: 'inline'}}>Completion Status: {mygoal.goal[2].completion_status}</h4>
+                      {/* this next part of code checks if the user wants to see the action items for their goals. 
+                      If the goal is completed it is striked out as complete. This logic also looks at whether 
+                      the action item is an empty string and does not display it if it is an empty string. */}
                       {this.state.showActionItems ? <ul>
-                        {mygoal.action.map(myAction => { return (
-                        myAction.isComplete ? <li><h4 style={{ textDecoration: 'line-through'}}>{myAction.action} <i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></h4></li> : (<li><h4>{myAction.action} <button onClick={() => this.handleCompletedActionItem(myAction.id)}>Action Completed</button></h4></li>) )
-                      })} </ul> : null}
+                        {mygoal.action.map(myAction => { return myAction.action !== "" ? (
+                        ( myAction.isComplete ? (<li><h4 style={{ textDecoration: 'line-through'}}>
+                        {myAction.action} <i class="em em-white_check_mark" aria-roledescription="presentation" 
+                        aria-label="WHITE HEAVY CHECK MARK"></i></h4></li> ) : (<li><h4>{myAction.action}
+                        <button onClick={() => this.handleCompletedActionItem(myAction.id)}>Action Completed
+                        </button></h4></li> ))) : null
+                       })} </ul> : null}
                     </li>
                     <br></br>
                     <button 
@@ -146,15 +153,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signIn: user => {
-    dispatch({ type: "SIGN_IN", payload: user });
-  },
-  signOut: () => {
-    dispatch({ type: "SIGN_OUT" });
-  },
-  releaseUserData: () => {
-    dispatch({ type: "RELEASE_USER_DATA" });
-  },
   giveMeUserData: user => {
     dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
   }

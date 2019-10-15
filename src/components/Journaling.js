@@ -61,15 +61,15 @@ class Journaling extends React.Component {
           <div className="grid-item41">
             <h1>
               <i
-                class="em em-writing_hand"
-                aria-role="presentation"
-                aria-label=""
+                className="em em-writing_hand"
+                aria-roledescription="img"
+                aria-label="writing1"
               ></i>{" "}
               Journaling Time{" "}
               <i
-                class="em em-writing_hand"
-                aria-role="presentation"
-                aria-label=""
+                className="em em-writing_hand"
+                aria-roledescription="img"
+                aria-label="writing2"
               ></i>
             </h1>
           </div>
@@ -81,7 +81,7 @@ class Journaling extends React.Component {
             <div>
               {this.props.userData.journalings.map(journalEntry => {
                 return (
-                  <div>
+                  <div key={journalEntry.journal_id}>
                     <div style={{ borderStyle: "solid", borderRadius: "25px" }}>
                       <h1>{journalEntry.journal_title}</h1>
                       <p>{journalEntry.journal_text}</p>
@@ -117,7 +117,6 @@ class Journaling extends React.Component {
 
                   <label style={{ height: 15 }}></label>
                   <TextArea
-                    placeholder="Tell us more"
                     onChange={e => this.handleChange(e)}
                     style={{
                       width: 600,

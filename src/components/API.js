@@ -10,7 +10,7 @@ const deleteGoalUrl = baseUrl + '/deleteGoal'
 const updateItemActionIsCompletedUrl = baseUrl + '/updateActionItemIsCompleted'
 const createNewJournalEntryUrl = baseUrl + '/createNewJournalEntry'
 const updateDateUrl = baseUrl + '/updateAccountabilityDate'
-
+const lifeStatusUpdateUrl = baseUrl + '/lifeStatusUpdate'
 
 const get = url => fetch(url, {
     headers: {
@@ -62,7 +62,9 @@ const createNewJournalEntry = journalEntry => post(createNewJournalEntryUrl, jou
 
 const updateDate = date => patch(updateDateUrl, date)
 
+const lifeStatusUpdate = data => patch(lifeStatusUpdateUrl, data)
+
 export default { signIn, createAccount, validate, getUserData,
     getAccountabilityPartnerName, createNewGoal, 
     deleteGoal, updateItemActionIsCompleted,
-    createNewJournalEntry, updateDate }
+    createNewJournalEntry, updateDate, lifeStatusUpdate }
