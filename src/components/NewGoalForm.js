@@ -73,20 +73,20 @@ class NewGoalForm extends React.Component {
         <label>Action Item 1</label>
         <TextArea
         onChange={e => this.handleChange(e)}
-        style={{ width: 600 }}
+        style={{ width: 300 }}
         name="actionItem1"
         placeholder="What is one action that you need to take to achieve this goal?"/>
         <label>Action Item 2</label>
         <TextArea 
           onChange={e => this.handleChange(e)}
-          style={{ width: 600 }}
+          style={{ width: 300 }}
           name="actionItem2"
           placeholder="What is a second action that you need to take to achieve this goal?"
         />{" "}
         <label>Action Item 3</label>
         <TextArea
           onChange={e => this.handleChange(e)}
-          style={{ width: 600 }}
+          style={{ width: 300 }}
           name="actionItem3"
           placeholder="What is a third action that you need to take to achieve this goal?"
         />
