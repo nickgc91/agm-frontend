@@ -2,35 +2,41 @@
 .grid-container2 {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 60px 400px auto;
+    grid-auto-rows: 20%, 60%, 20%;
     grid-template-areas:
       "header header header header header"
       "picture picture usergoals usergoals usergoals"
       "footer footer footer footer footer";
   }
 
+  .grid-container2 > div {
+    text-align: center;
+    padding: 20px;
+  }
 
   .grid-item11 {
     grid-area: header;
-    background-color: cadetblue;
     padding: 12px;
     text-align: center;
   }
 
   .grid-item22 {
     grid-area: picture;
-    padding: 30px;
     text-align: center;
-    border-radius: 25px;
+    padding: 30px;
   }
 
   .grid-item33 {
-      width: 500;
+      text-align: center;
+      opacity: 0.8;
       word-wrap: break-word;
       grid-area: usergoals;
-      padding: 30px;
-      text-align: left;
-      border-radius: 25px;
+  }
+
+  .grid-item44 {
+    background-color: black;
+    color: white;
+    grid-area: footer;
   }
 
 

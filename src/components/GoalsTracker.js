@@ -41,8 +41,7 @@ class GoalsTracker extends React.Component {
           if (data.error) {
             throw Error(data.error);
           } else { console.log(data)
-              data.map(array => { return array.reverse().map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
-           )})
+              this.props.addUpdate(data)
           }
             }
            )
@@ -106,15 +105,20 @@ class GoalsTracker extends React.Component {
           <div className="grid-item11">
             <h1> Your Current Goals </h1>
           </div>
+          <div className="grid-item22"
+          height="700"
+          width="500"
+          >
           <img
-            className="grid-item22"
-            style={{ borderRadius: "20%" }}
+          style={{ borderRadius: "20%" }}
             src="https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
             alt="Smiley face"
             height="700"
-            width="500"
+            width="auto"
           />
+          </div>
           <div className="grid-item33">
+            <div style={{ borderRadius: "20%", padding: '20px', height: 'auto', width: '450px', margin: '0 auto', border: 'solid' }}>
             <h2>Goals:</h2>
             {this.props.userData.goals[0].numOfGoals === 0 ? null : (
               <button
@@ -134,7 +138,7 @@ class GoalsTracker extends React.Component {
                             <h3 style={{ textDecoration: "line-through" }}>
                               {mygoal.goal[1]}{" "}
                               <i
-                                class="em em-white_check_mark"
+                                className="em em-white_check_mark"
                                 aria-roledescription="presentation"
                                 aria-label="WHITE HEAVY CHECK MARK"
                               ></i>
@@ -145,7 +149,7 @@ class GoalsTracker extends React.Component {
                         {this.props.userData.goals[0].numOfGoals ===
                         0 ? null : (
                           <h4 style={{ display: "inline" }}> Completion Status:{" "}
-                            {mygoal.goal[2].completion_status}
+                            {Math.round(mygoal.goal[2].completion_status) + '%'}
                           </h4>
                         )}
                         {/* this next part of code checks if the user wants to see the action items for their goals. 
@@ -153,23 +157,23 @@ class GoalsTracker extends React.Component {
                       the action item is an empty string and does not display it if it is an empty string. */}
                         {this.state.showActionItems ? (
                           <ul>
-                            {mygoal.action.map(myAction => {
+                            {mygoal.action.map((myAction, index) => {
                               return myAction.action !== "" ? (
                                 myAction.isComplete ? (
-                                  <li>
+                                  <li key={index} >
                                     <h4
                                       style={{ textDecoration: "line-through" }}
                                     >
                                       {myAction.action}{" "}
                                       <i
-                                        class="em em-white_check_mark"
+                                        className="em em-white_check_mark"
                                         aria-roledescription="presentation"
                                         aria-label="WHITE HEAVY CHECK MARK"
                                       ></i>
                                     </h4>
                                   </li>
                                 ) : (
-                                  <li>
+                                  <li key={index} >
                                     <h4>
                                       {myAction.action}
                                       <button
@@ -220,6 +224,7 @@ class GoalsTracker extends React.Component {
             {this.state.showNewGoalForm ? (
               <NewGoalForm hideNewGoalForm={this.hideNewGoalForm} />
             ) : null}
+          </div>
           </div>
         </div>
       </div>

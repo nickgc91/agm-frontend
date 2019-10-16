@@ -3,14 +3,12 @@ import { Route, withRouter } from "react-router-dom";
 import "./css/App.css";
 import LoginForm from "./components/LoginForm";
 import StatusPage from "./components/StatusPage";
-import API from "./components/API"
-import { connect } from 'react-redux'
-import GoalsTracker from './components/GoalsTracker'
-import Journaling from './components/Journaling'
-
+import API from "./components/API";
+import { connect } from "react-redux";
+import GoalsTracker from "./components/GoalsTracker";
+import Journaling from "./components/Journaling";
 
 class App extends React.Component {
-
   componentDidMount() {
     if (localStorage.getItem("token") !== undefined) {
       API.validate()
@@ -19,12 +17,12 @@ class App extends React.Component {
             throw Error(data.error);
           } else {
             this.props.signIn(data);
-            this.getStatusUpdate()
+            this.getStatusUpdate();
           }
         })
         .catch(error => {
           alert(error);
-          this.props.history.push("/signin")
+          this.props.history.push("/signin");
         });
     } else {
     }
@@ -32,21 +30,43 @@ class App extends React.Component {
 
   getStatusUpdate = () => {
     API.provideMastermindUpdates()
-        .then(data => {
-          if (data.error) {
-            throw Error(data.error);
-          } else { console.log(data)
-              data.map(array => { return array.map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
-           )})
-          }
-            }
-           )
-        .catch(error => {
-          alert(error);
-        });
-      }
-
-
+      .then(data => {
+        if (data.error) {
+          throw Error(data.error);
+        } else {
+          
+          console.log(data);
+          return (
+          data[0].map(item =>
+                this.props.addUpdate([
+                  item[1],
+                  `${item[1]} has made progress working on this goal: ${item[0]}.`
+                ])
+              ),
+            data[1].map(item =>
+              this.props.addUpdate([
+                item[1],
+                `${item[1]} has written a new journal entry.`
+              ])
+            ),
+          data[2].map(item =>
+            this.props.addUpdate([
+              item[1],
+              `${item[0]} has updated their life status tracker.`
+            ])
+          ),
+        data[3].map(item =>
+          this.props.addUpdate([
+            item[1],
+            `${item[1]} is focusing on this action item to crush their goal: ${item[0]}.`
+          ])
+        ))
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
 
   render() {
     return (
@@ -61,11 +81,7 @@ class App extends React.Component {
         <Route
           exact
           path="/"
-          component={routerProps => (
-            <StatusPage
-              {...routerProps}
-            />
-          )}
+          component={routerProps => <StatusPage {...routerProps} />}
         />
         <Route
           exact
@@ -86,15 +102,18 @@ class App extends React.Component {
   }
 }
 
-
-
 const mapDispatchToProps = dispatch => ({
-  signIn: user => { dispatch({ type: 'SIGN_IN', payload: user})},
-  addUpdate: update => { dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
+  signIn: user => {
+    dispatch({ type: "SIGN_IN", payload: user });
+  },
+  addUpdate: update => {
+    dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
   }
-})
+});
 
-
-
-
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(App)
+);

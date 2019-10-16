@@ -126,6 +126,7 @@ class LoginForm extends React.Component {
             type="text"
             name="username"
             placeholder="username"
+            required
           />{" "}
           <label>Password </label>
           <input
@@ -134,6 +135,7 @@ class LoginForm extends React.Component {
             type="password"
             name="password"
             placeholder="password"
+            required
           />
         </div>
         <button className="ui green button">Login</button>

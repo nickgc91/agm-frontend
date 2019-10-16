@@ -15,9 +15,8 @@ class StatusPage extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       this.getUserData();
+      this.getStatusUpdate();
     }
-
-    
   }
 
   handleDateUpdateClick = () => {
@@ -36,7 +35,45 @@ class StatusPage extends React.Component {
       });
   };
 
-
+  getStatusUpdate = () => {
+    API.provideMastermindUpdates()
+      .then(data => {
+        if (data.error) {
+          throw Error(data.error);
+        } else {
+          
+          console.log(data);
+          return (
+          data[0].map(item =>
+                this.props.addUpdate([
+                  item[1],
+                  `${item[1]} has made progress working on this goal: ${item[0]}.`
+                ])
+              ),
+            data[1].map(item =>
+              this.props.addUpdate([
+                item[1],
+                `${item[1]} has written a new journal entry.`
+              ])
+            ),
+          data[2].map(item =>
+            this.props.addUpdate([
+              item[1],
+              `${item[0]} has updated their life status tracker.`
+            ])
+          ),
+        data[3].map(item =>
+          this.props.addUpdate([
+            item[1],
+            `${item[1]} is focusing on this action item to crush their goal: ${item[0]}.`
+          ])
+        ))
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
 
   getUserData = () => {
     API.getUserData()
@@ -66,7 +103,15 @@ class StatusPage extends React.Component {
         <div className="grid-container">
           <div className="grid-item1">
             <div style={{ bordeStyle: "solid" }}>
-              <h2><span role="img" aria-label='fire'>&#128513;</span> Welcome back {currentUser.username} <span role="img" aria-label='fire'>&#128513;</span></h2>
+              <h2>
+                <span role="img" aria-label="fire">
+                  &#128513;
+                </span>{" "}
+                Welcome back {currentUser.username}{" "}
+                <span role="img" aria-label="fire">
+                  &#128513;
+                </span>
+              </h2>
             </div>
           </div>
           <div className="grid-item2">
@@ -92,8 +137,22 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item3">
             <div className="status-updates">
-              <h1>Latest Activity</h1>
-    {masterStatusUpdates.map((update, index) => {return <h4 key={index}>{update}</h4>})}
+              <h3><u><b>Latest goal-related activity..</b></u></h3>
+              {masterStatusUpdates.slice(0,3).map((update, index) => {
+                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              })}
+              <h3><u><b>Latest journaling-entry activity..</b></u></h3>
+              {masterStatusUpdates.slice(3,6).map((update, index) => {
+                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              })}
+              <h3><u><b>Latest life-status-tracking activity..</b></u></h3>
+              {masterStatusUpdates.slice(6,9).map((update, index) => {
+                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              })}
+              <h3><u><b>Latest action taken activity..</b></u></h3>
+              {masterStatusUpdates.slice(9,12).map((update, index) => {
+                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              })}
             </div>
           </div>
           <div className="grid-item4">

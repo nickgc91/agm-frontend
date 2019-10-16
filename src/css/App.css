@@ -1,17 +1,16 @@
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows:85px 360px 570px 300px auto;
+  grid-auto-rows: minmax(50px, auto);
   grid-template-areas:
     "header header header header"
     "goalstracker goalstracker goalstracker updatefeed"
     "lifestatus lifestatus lifestatus updatefeed"
-    "accountabilitypartner accountabilitypartner journaling journaling"
+    "accountabilitypartner accountabilitypartner journaling updatefeed"
     "footer footer footer footer";
 }
 
 .grid-item1 {
-  border-style: solid;
   border-width: 10px;
   grid-area: header;
 }
@@ -44,54 +43,60 @@
 
 .grid-container > div {
   text-align: center;
-  font-size: 30px;
-  padding: 20px;
+  padding: 15px;
 }
 
 .goals-tracker {
-  border-style: solid;
+  opacity: 0.8;
+  color: white;
   background-color: cadetblue;
   font-size: 30px;
-  padding: 20px;
-  height: 340px;
+  height: auto;
   border-radius: 25px;
+  padding: 20px;
 }
 
 .status-updates {
+  opacity: 0.8;
+  color: white;
   background-color: cadetblue;
-  border-style: solid;
   text-align: center;
-  font-size: 30px;
-  height: 910px;
+  font-size: 15px;
+  height: auto;
   border-radius: 25px;
-  padding: 10px;
+  padding: 20px;
 }
 
 
 .accountability-partner {
+  opacity: 0.8;
+  color: white;
   background-color: cadetblue;
-  border-style: solid;
   text-align: center;
   padding: 20px;
   font-size: 30px;
-  height: 250px;
+  height: auto;
   border-radius: 25px;
 }
 
 .life-status-tracker {
+  opacity: 0.8;
+  color: white;
   background-color: cadetblue;
-  border-style: solid;
   text-align: center;
   font-size: 30px;
-  height: 545px;
+  height: auto;
   border-radius: 25px;
+  padding: 20px;
 }
 
 .journaling {
+  opacity: 0.8;
+  color: white;
   background-color: cadetblue;
-  border-style: solid;
   text-align: center;
   font-size: 30px;
-  height: 250px;
+  height: auto;
   border-radius: 25px;
+  padding: 20px;
 }

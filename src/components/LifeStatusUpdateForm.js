@@ -2,19 +2,33 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import API from "./API";
-import "../css/LifeStatusUpdateForm.css";
 
 class LifeStatusUpdateForm extends React.Component {
-
-
   state = {
-    finances: "",
-    dating: "",
-    social: "",
-    spiritual: "",
-    health: ""
+    finances: null,
+    dating: null,
+    social: null,
+    spiritual: null,
+    health: null
   };
 
+  handleLifeStatusUpdateSubmit = () => { 
+    console.log('sup fella')
+    const { finances, dating, social, spiritual, health } = this.state;
+    API.lifeStatusUpdate({ finances, dating, social, spiritual, health })
+      .then(data => {
+        if (data.error) {
+          throw Error(data.error);
+        } else {
+          this.getUserData();
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
+
+ 
   getUserData = () => {
     API.getUserData()
       .then(data => {
@@ -30,101 +44,220 @@ class LifeStatusUpdateForm extends React.Component {
       });
   };
 
-  handleLifeStatusUpdateSubmit = () => {
-    const { finances, dating, social, spiritual, health } = this.state;
-    API.lifeStatusUpdate({ finances, dating, social, spiritual, health })
-      .then(data => {
-        if (data.error) {
-          throw Error(data.error);
-        } else {
-          this.setState({ updateLifeStatusTracker: false });
-          this.getUserData();
-          this.getStatusUpdate()
-        }
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
-
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
-        .then(data => {
-          if (data.error) {
-            throw Error(data.error);
-          } else { console.log(data)
-              data.map(array => { return array.reverse().map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
-           )})
-          }
-            }
-           )
-        .catch(error => {
-          alert(error);
-        });
-      }
-
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
     return (
-      <div className="your-class">
-        <form
-          onSubmit={e => {
-            e.persist();
-            e.preventDefault();
-            this.handleLifeStatusUpdateSubmit();
-          }}
-          className="ui form"
-        >
-          {/* <div className="field"> */}
+      <div>
+        <form >
           <label>Finances</label>
-          <input
+          <select
             onChange={e => this.handleChange(e)}
-            style={{ width: 100 }}
-            type="text"
             name="finances"
-            placeholder="?"
-          />
-          <label>Dating</label>
-          <input
+          >
+            <option type="number" value="0">
+              0
+            </option>
+            <option type="number" value="1">
+              1
+            </option>
+            <option type="number" value="2">
+              2
+            </option>
+            <option type="number" value="3">
+              3
+            </option>
+            <option type="number" value="4">
+              4
+            </option>
+            <option type="number" value="5">
+              5
+            </option>
+            <option type="number" value="6">
+              6
+            </option>
+            <option type="number" value="7">
+              7
+            </option>
+            <option type="number" value="8">
+              8
+            </option>
+            <option type="number" value="9">
+              9
+            </option>
+            <option type="number" value="10">
+              10
+            </option>
+          </select>
+
+          <label>Dating/Relationship</label>
+          <select
             onChange={e => this.handleChange(e)}
-            style={{ width: 100 }}
-            type="text"
             name="dating"
-            placeholder="?"
-          />
+          >
+            <option type="number" value="0">
+              0
+            </option>
+            <option type="number" value="1">
+              1
+            </option>
+            <option type="number" value="2">
+              2
+            </option>
+            <option type="number" value="3">
+              3
+            </option>
+            <option type="number" value="4">
+              4
+            </option>
+            <option type="number" value="5">
+              5
+            </option>
+            <option type="number" value="6">
+              6
+            </option>
+            <option type="number" value="7">
+              7
+            </option>
+            <option type="number" value="8">
+              8
+            </option>
+            <option type="number" value="9">
+              9
+            </option>
+            <option type="number" value="10">
+              10
+            </option>
+          </select>
+
           <label>Social</label>
-          <input
+          <select
             onChange={e => this.handleChange(e)}
-            style={{ width: 100 }}
-            type="text"
             name="social"
-            placeholder="?"
-          />
-          <label>Spiritual</label>
-          <input
+          >
+            <option type="number" value="0">
+              0
+            </option>
+            <option type="number" value="1">
+              1
+            </option>
+            <option type="number" value="2">
+              2
+            </option>
+            <option type="number" value="3">
+              3
+            </option>
+            <option type="number" value="4">
+              4
+            </option>
+            <option type="number" value="5">
+              5
+            </option>
+            <option type="number" value="6">
+              6
+            </option>
+            <option type="number" value="7">
+              7
+            </option>
+            <option type="number" value="8">
+              8
+            </option>
+            <option type="number" value="9">
+              9
+            </option>
+            <option type="number" value="10">
+              10
+            </option>
+          </select>
+
+          <label>Spirituality</label>
+          <select
             onChange={e => this.handleChange(e)}
-            style={{ width: 100 }}
-            type="text"
             name="spiritual"
-            placeholder="?"
-          />
-          <label>Health</label>
-          <input
+          >
+            <option type="number" value="0">
+              0
+            </option>
+            <option type="number" value="1">
+              1
+            </option>
+            <option type="number" value="2">
+              2
+            </option>
+            <option type="number" value="3">
+              3
+            </option>
+            <option type="number" value="4">
+              4
+            </option>
+            <option type="number" value="5">
+              5
+            </option>
+            <option type="number" value="6">
+              6
+            </option>
+            <option type="number" value="7">
+              7
+            </option>
+            <option type="number" value="8">
+              8
+            </option>
+            <option type="number" value="9">
+              9
+            </option>
+            <option type="number" value="10">
+              10
+            </option>
+          </select>
+
+          <label>Health/Fitness</label>
+          <select
             onChange={e => this.handleChange(e)}
-            style={{ width: 100 }}
-            type="text"
             name="health"
-            placeholder="?"
-          />
-
-          <label style={{ height: 15 }}></label>
-
-          {/* </div> */}
-          <button className="ui green button">Update Life Status</button>
+          >
+            <option type="number" value="0">
+              0
+            </option>
+            <option type="number" value="1">
+              1
+            </option>
+            <option type="number" value="2">
+              2
+            </option>
+            <option type="number" value="3">
+              3
+            </option>
+            <option type="number" value="4">
+              4
+            </option>
+            <option type="number" value="5">
+              5
+            </option>
+            <option type="number" value="6">
+              6
+            </option>
+            <option type="number" value="7">
+              7
+            </option>
+            <option type="number" value="8">
+              8
+            </option>
+            <option type="number" value="9">
+              9
+            </option>
+            <option type="number" value="10">
+              10
+            </option>
+          </select>
         </form>
+        <button 
+          className="ui green button"
+          onClick={() => this.handleLifeStatusUpdateSubmit()}
+          >
+            Update
+          </button>
       </div>
     );
   }
