@@ -15,7 +15,6 @@ class StatusPage extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       this.getUserData();
-      this.getStatusUpdate();
     }
   }
 
@@ -41,33 +40,12 @@ class StatusPage extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-          
-          console.log(data);
           return (
-          data[0].map(item =>
-                this.props.addUpdate([
-                  item[1],
-                  `${item[1]} has made progress working on this goal: ${item[0]}.`
-                ])
-              ),
-            data[1].map(item =>
-              this.props.addUpdate([
-                item[1],
-                `${item[1]} has written a new journal entry.`
-              ])
-            ),
-          data[2].map(item =>
-            this.props.addUpdate([
-              item[1],
-              `${item[0]} has updated their life status tracker.`
-            ])
-          ),
-        data[3].map(item =>
-          this.props.addUpdate([
-            item[1],
-            `${item[1]} is focusing on this action item to crush their goal: ${item[0]}.`
-          ])
-        ))
+            data[0].map(item => this.props.addUpdate(item)),
+            data[1].map(item => this.props.addUpdate(item)),
+            data[2].map(item => this.props.addUpdate(item)),
+            data[3].map(item => this.props.addUpdate(item))
+          );
         }
       })
       .catch(error => {
@@ -137,21 +115,69 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item3">
             <div className="status-updates">
-              <h3><u><b>Latest goal-related activity..</b></u></h3>
-              {masterStatusUpdates.slice(0,3).map((update, index) => {
-                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              <h3 style={{ color: "black" }}>
+                <u>
+                  <b>Latest goal-related activity..</b>
+                </u>
+              </h3>
+              {masterStatusUpdates.slice(0, 3).map((update, index) => {
+                return update[1] === currentUser.username ? (
+                  <p style={{ color: "#49fb35" }} key={index}>
+                    {" "}
+                    You've made progress working on this goal: {update[0]}.
+                  </p>
+                ) : (
+                  <p key={index}>
+                    {update[1]} has made progress working on this goal:{" "}
+                    {update[0]}.
+                  </p>
+                );
               })}
-              <h3><u><b>Latest journaling-entry activity..</b></u></h3>
-              {masterStatusUpdates.slice(3,6).map((update, index) => {
-                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              <h3 style={{ color: "black" }}>
+                <u>
+                  <b>Latest journaling-entry activity..</b>
+                </u>
+              </h3>
+              {masterStatusUpdates.slice(3, 6).map((update, index) => {
+                return update[1] === currentUser.username ? (
+                  <p style={{ color: "#49fb35" }} key={index}>
+                    You've written a new journal entry.
+                  </p>
+                ) : (
+                  <p key={index}>
+                    {update[1]} has written a new journal entry.
+                  </p>
+                );
               })}
-              <h3><u><b>Latest life-status-tracking activity..</b></u></h3>
-              {masterStatusUpdates.slice(6,9).map((update, index) => {
-                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              <h3 style={{ color: "black" }}>
+                <u>
+                  <b>Latest life-status-tracking activity..</b>
+                </u>
+              </h3>
+              {masterStatusUpdates.slice(6, 9).map((update, index) => {
+                return update[0] === currentUser.username ? (
+                  <p style={{ color: "#49fb35" }} key={index}>
+                    You've updated your life status tracker.
+                  </p>
+                ) : (
+                  <p key={index}>{update[0]} has updated their life status tracker.</p>
+                );
               })}
-              <h3><u><b>Latest action taken activity..</b></u></h3>
-              {masterStatusUpdates.slice(9,12).map((update, index) => {
-                return (update[0] === currentUser.username ? <p style={{ color: 'purple' }} key={index}>{update[1]}</p> : <p key={index}>{update[1]}</p>) 
+              <h3 style={{ color: "black" }}>
+                <u>
+                  <b>Latest action taken..</b>
+                </u>
+              </h3>
+              {masterStatusUpdates.slice(9, 12).map((update, index) => {
+                return update[1] === currentUser.username ? (
+                  <p style={{ color: "#49fb35" }} key={index}>
+                    You're taking action on {update[0]} to crush your goals.
+                  </p>
+                ) : (
+                  <p key={index}>
+                  {update[1]} is taking action on {update[0]} (action item) to crush their goal.
+                  </p>
+                );
               })}
             </div>
           </div>

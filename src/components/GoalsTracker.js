@@ -7,6 +7,11 @@ import NavBar from "./NavBar";
 import NewGoalForm from "./NewGoalForm";
 
 class GoalsTracker extends React.Component {
+
+
+  componentDidMount() {
+    this.retrieveGoalsData();
+  }
   
   
   goals = [];
@@ -14,7 +19,7 @@ class GoalsTracker extends React.Component {
   state = {
     showNewGoalForm: false,
     showActionItems: false,
-    showToggleButton: true
+    showDeleteButton: true
   };
 
   handleCompletedActionItem = itemId => {
@@ -23,8 +28,7 @@ class GoalsTracker extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-          this.getUserData();
-          this.getStatusUpdate()
+          this.retrieveGoalsData();
           if (this.props.userData.goals[0].goal[2].completion_status === "100%") {
             // return null do something with this later --> completed goal
           }
@@ -35,20 +39,6 @@ class GoalsTracker extends React.Component {
       });
   };
 
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
-        .then(data => {
-          if (data.error) {
-            throw Error(data.error);
-          } else { console.log(data)
-              this.props.addUpdate(data)
-          }
-            }
-           )
-        .catch(error => {
-          alert(error);
-        });
-      }
 
   showActionItems = () => {
     this.setState({
@@ -69,7 +59,7 @@ class GoalsTracker extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-          this.props.history.push("/goals-tracker");
+          this.retrieveGoalsData();
         }
       })
       .catch(error => {
@@ -77,11 +67,7 @@ class GoalsTracker extends React.Component {
       });
   };
 
-  componentDidMount() {
-    this.getUserData();
-  }
-
-  getUserData = () => {
+  retrieveGoalsData = () => {
     API.getUserData()
       .then(data => {
         if (data.error) {
@@ -134,15 +120,16 @@ class GoalsTracker extends React.Component {
                   return (
                     <div key={mygoal.goal[0]}>
                       <li>
-                        {mygoal.goal[2].completion_status === "100%" ? (
+                        {mygoal.goal[2].completion_status === 100.0? (
+                          <div>
                             <h3 style={{ textDecoration: "line-through" }}>
                               {mygoal.goal[1]}{" "}
                               <i
                                 className="em em-white_check_mark"
                                 aria-roledescription="presentation"
                                 aria-label="WHITE HEAVY CHECK MARK"
-                              ></i>
-                            </h3>
+                              ></i> </h3><h3>Congrats! You smashed your goal! 
+                            </h3></div>
                           ) : (
                             <h3>{mygoal.goal[1]}</h3> )} </li> 
                         
@@ -194,7 +181,7 @@ class GoalsTracker extends React.Component {
                         ) : null}
                       
                       <br></br>
-                      {this.props.userData.goals[0].numOfGoals === 0 ? null : (
+                      {this.props.userData.goals[0].numOfGoals === 0 || !this.state.showDeleteButton ? null : (
                         <button
                           key={mygoal.goal[0]}
                           className="ui mini red button"
