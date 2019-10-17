@@ -198,8 +198,7 @@ class GoalsTracker extends React.Component {
                 })}
               </ul>{" "}
             </div>
-            <br></br>
-            <br></br>
+            
             {!this.state.showNewGoalForm ? (
               <button
                 onClick={() => this.setState({ showNewGoalForm: true })}
@@ -211,6 +210,13 @@ class GoalsTracker extends React.Component {
             {this.state.showNewGoalForm ? (
               <NewGoalForm hideNewGoalForm={this.hideNewGoalForm} />
             ) : null}
+            <br></br> <br></br>
+          <button
+                onClick={() => this.props.history.push('/')}
+                className="ui mini button"
+              >
+                Back To Home
+            </button>
           </div>
           </div>
         </div>

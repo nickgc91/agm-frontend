@@ -14,7 +14,7 @@ class StatusPage extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.getUserData();
+      this.getUserData()
     }
   }
 

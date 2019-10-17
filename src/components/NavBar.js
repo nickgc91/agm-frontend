@@ -11,7 +11,9 @@ class NavBar extends Component {
       if ( name === 'home' ) {
         this.props.history.push("/")
       } else if ( name === 'goals' ) {
-        this.props.history.push('/goals-tracker')
+        this.props.history.push('/goals-tracker') 
+      } else if ( name === 'journaling' ) {
+        this.props.history.push('/journaling')
       } else if (name === 'logout') {
         this.props.signOut()
         this.props.releaseUserData()
@@ -31,7 +33,11 @@ class NavBar extends Component {
           <Menu.Item
             name='goals'
             onClick={this.handleItemClick}
-          />          
+          />
+          <Menu.Item
+            name='journaling'
+            onClick={this.handleItemClick}
+          />             
           <Menu.Item
             style={{ float: 'right' }}
             name='logout'

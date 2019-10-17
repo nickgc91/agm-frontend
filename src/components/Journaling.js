@@ -130,6 +130,13 @@ class Journaling extends React.Component {
                 </div>
                 <button className="ui green button">Add New Journal Entry</button>
               </form>
+              <br></br> <br></br>
+          <button
+                onClick={() => this.props.history.push('/')}
+                className="ui mini button"
+              >
+                Back To Home
+            </button>
             </div>
           </div>
         </div>
