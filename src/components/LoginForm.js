@@ -26,15 +26,35 @@ class LoginForm extends React.Component {
       if (data.error) {
         throw Error(data.error)
       } else {
-        this.props.history.push('/')
         this.props.signIn(data)
+        this.getStatusUpdate()
         this.getUserData()
+        this.props.history.push('/')
         }
     })
     .catch(error => {
       alert(error)
     })
   }
+
+  getStatusUpdate = () => {
+    API.provideMastermindUpdates()
+      .then(data => {
+        if (data.error) {
+          throw Error(data.error);
+        } else {
+          return (
+            data[0].map(item => this.props.addUpdate(item)),
+            data[1].map(item => this.props.addUpdate(item)),
+            data[2].map(item => this.props.addUpdate(item)),
+            data[3].map(item => this.props.addUpdate(item))
+          );
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
 
   getUserData = () => {API.getUserData()
     .then(data => {
@@ -73,6 +93,8 @@ class LoginForm extends React.Component {
         this.clearCreateInput(e)
       } else {
         this.props.signIn(data)
+        this.getStatusUpdate()
+        this.getUserData()
         this.props.history.push('/') }
     })
 
@@ -191,7 +213,8 @@ class LoginForm extends React.Component {
 const mapDispatchToProps = dispatch => ({
   signIn: user => { dispatch({ type: 'SIGN_IN', payload: user})},
   signOut: () => { dispatch({ type: 'SIGN_OUT' })},
-  giveMeUserData: user => { dispatch({ type: 'GIVE_ME_USER_DATA', payload: user })}
+  giveMeUserData: user => { dispatch({ type: 'GIVE_ME_USER_DATA', payload: user })},
+  addUpdate: update => { dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update })}
 })
 
 export default withRouter(connect(null, mapDispatchToProps)(LoginForm));

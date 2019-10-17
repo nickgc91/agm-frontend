@@ -20,46 +20,6 @@ class LifeStatusUpdateForm extends React.Component {
           throw Error(data.error);
         } else {
           this.getUserData();
-          this.getStatusUpdate()
-        }
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
-
-
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
-      .then(data => {
-        if (data.error) {
-          throw Error(data.error);
-        } else {
-          return (
-          data[0].map(item =>
-                this.props.addUpdate([
-                  item[1],
-                  `${item[1]} has made progress working on this goal: ${item[0]}.`
-                ])
-              ),
-            data[1].map(item =>
-              this.props.addUpdate([
-                item[1],
-                `${item[1]} has written a new journal entry.`
-              ])
-            ),
-          data[2].map(item =>
-            this.props.addUpdate([
-              item[1],
-              `${item[0]} has updated their life status tracker.`
-            ])
-          ),
-        data[3].map(item =>
-          this.props.addUpdate([
-            item[1],
-            `${item[1]} is focusing on this action item to crush their goal: ${item[0]}.`
-          ])
-        ))
         }
       })
       .catch(error => {
