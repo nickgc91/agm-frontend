@@ -8,7 +8,7 @@ import { TextArea } from "semantic-ui-react";
 
 class Journaling extends React.Component {
   componentDidMount() {
-    this.getUserData()
+    this.retrieveJournalData()
   }
 
   state = {
@@ -27,8 +27,7 @@ class Journaling extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-            this.getUserData()
-            this.getStatusUpdate()
+            this.retrieveJournalData()
         }
       })
       .catch(error => {
@@ -37,24 +36,7 @@ class Journaling extends React.Component {
   };
 
 
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
-        .then(data => {
-          if (data.error) {
-            throw Error(data.error);
-          } else { console.log(data)
-              data.map(array => { return array.reverse().map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
-           )})
-          }
-            }
-           )
-        .catch(error => {
-          alert(error);
-        });
-      }
-
-
-  getUserData = () => {
+  retrieveJournalData = () => {
     API.getUserData()
       .then(data => {
         if (data.error) {

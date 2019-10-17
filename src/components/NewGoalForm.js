@@ -35,19 +35,41 @@ class NewGoalForm extends React.Component {
 
   getStatusUpdate = () => {
     API.provideMastermindUpdates()
-        .then(data => {
-          if (data.error) {
-            throw Error(data.error);
-          } else { console.log(data)
-              data.map(array => { return array.reverse().map(item => this.props.addUpdate(`${item.user} has made progress working on a ${item.action}: ${item.name}`)
-           )})
-          }
-            }
-           )
-        .catch(error => {
-          alert(error);
-        });
-      }
+      .then(data => {
+        if (data.error) {
+          throw Error(data.error);
+        } else {
+          return (
+          data[0].map(item =>
+                this.props.addUpdate([
+                  item[1],
+                  `${item[1]} has made progress working on this goal: ${item[0]}.`
+                ])
+              ),
+            data[1].map(item =>
+              this.props.addUpdate([
+                item[1],
+                `${item[1]} has written a new journal entry.`
+              ])
+            ),
+          data[2].map(item =>
+            this.props.addUpdate([
+              item[0],
+              `${item[0]} has updated their life status tracker.`
+            ])
+          ),
+        data[3].map(item =>
+          this.props.addUpdate([
+            item[1],
+            `${item[1]} is focusing on this action item to crush their goal: ${item[0]}.`
+          ])
+        ))
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
 
   
 
