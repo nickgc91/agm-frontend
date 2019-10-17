@@ -4,6 +4,8 @@ import API from './API'
 import '../css/Login.css'
 import { connect } from 'react-redux'
 
+
+
 class LoginForm extends React.Component {
 
   state = {
@@ -46,17 +48,34 @@ class LoginForm extends React.Component {
       alert(error);
     })}
 
-  handleCreateAccountSubmit = () => {
-    this.setState({ showCreateAccountPage: false })
+  clearCreateInput = e => {
+    let signInU = document.getElementsByName("username")[0]
+    let signInE = document.getElementsByName("email")[0]
+    let signInP = document.getElementsByName("password")[0]
+    signInU.value = ''
+    signInE.value = ''
+    signInP.value = ''
+  }
+
+  clearLoginInput = () => {
+    let signInU = document.getElementsByName("username")[0]
+    let signInP = document.getElementsByName("password")[0]
+    signInU.value = ''
+    signInP.value = ''
+  }
+
+  handleCreateAccountSubmit = e => {
     const { username, password, email, accountability_partner } = this.state
     API.createAccount({ username, email, password, accountability_partner })
     .then(data => {
       if (data.error) {
-        this.props.history.push('/signin')
+        alert(data.error)
+        this.clearCreateInput(e)
       } else {
         this.props.signIn(data)
         this.props.history.push('/') }
     })
+
   }
 
 
@@ -83,6 +102,7 @@ class LoginForm extends React.Component {
             type="text"
             name="username"
             placeholder="username"
+            required
           />{" "}
           <label>Password </label>
           <input
@@ -91,6 +111,7 @@ class LoginForm extends React.Component {
             type="text"
             name="email"
             placeholder="email"
+            required
           /> {" "}
           <label>Password </label>
           <input
@@ -99,6 +120,7 @@ class LoginForm extends React.Component {
             type="password"
             name="password"
             placeholder="password"
+            required
           />
         </div>
         <br></br>
@@ -106,6 +128,16 @@ class LoginForm extends React.Component {
         className="ui green button">Create Account
         </button>
       </form>
+      <br></br><br></br>
+      <button
+        className="ui mini button"
+        onClick={() => {
+          this.clearCreateInput()
+          this.setState({ showCreateAccountPage: false })
+        }}
+      >
+        Back To Login
+      </button>
       </div> 
       :
     <div className="Login">
@@ -143,7 +175,10 @@ class LoginForm extends React.Component {
       <h1>Create Account</h1>
       <button
         className="ui green button"
-        onClick={() => this.setState({ showCreateAccountPage: true })}
+        onClick={() => {
+          this.clearLoginInput()
+          this.setState({ showCreateAccountPage: true })
+        }}
       >
         Create Account
       </button>
