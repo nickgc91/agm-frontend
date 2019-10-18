@@ -11,7 +11,6 @@ const signOut = (state) => {
 
 
 export default (state = '', action) => {
-
     switch (action.type) {
         case 'SIGN_IN':
             return signIn(action)

@@ -27,8 +27,6 @@ class LoginForm extends React.Component {
         throw Error(data.error)
       } else {
         this.props.signIn(data)
-        this.getStatusUpdate()
-        this.getUserData()
         this.props.history.push('/')
         }
     })
@@ -36,37 +34,6 @@ class LoginForm extends React.Component {
       alert(error)
     })
   }
-
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
-      .then(data => {
-        if (data.error) {
-          throw Error(data.error);
-        } else {
-          return (
-            data[0].map(item => this.props.addUpdate(item)),
-            data[1].map(item => this.props.addUpdate(item)),
-            data[2].map(item => this.props.addUpdate(item)),
-            data[3].map(item => this.props.addUpdate(item))
-          );
-        }
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
-
-  getUserData = () => {API.getUserData()
-    .then(data => {
-      if (data.error) {
-        throw Error(data.error);
-      } else {
-        this.props.giveMeUserData(data)
-      }
-    })
-    .catch(error => {
-      alert(error);
-    })}
 
   clearCreateInput = e => {
     let signInU = document.getElementsByName("username")[0]

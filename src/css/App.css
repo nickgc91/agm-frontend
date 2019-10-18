@@ -1,12 +1,12 @@
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-auto-rows: minmax(50px, auto);
+  grid-auto-rows: minmax(100px, auto);
   grid-template-areas:
     "header header header header"
     "goalstracker goalstracker goalstracker updatefeed"
     "lifestatus lifestatus lifestatus updatefeed"
-    "accountabilitypartner accountabilitypartner journaling updatefeed"
+    "accountabilitypartner accountabilitypartner journaling journaling"
     "footer footer footer footer";
 }
 
@@ -49,7 +49,7 @@
 .goals-tracker {
   opacity: 0.8;
   color: white;
-  background-color: cadetblue;
+  background-color: #236B8E;
   font-size: 30px;
   height: auto;
   border-radius: 25px;
@@ -59,7 +59,7 @@
 .status-updates {
   opacity: 0.8;
   color: white;
-  background-color: cadetblue;
+  background-color: #236B8E;
   text-align: center;
   font-size: 15px;
   height: auto;
@@ -71,7 +71,7 @@
 .accountability-partner {
   opacity: 0.8;
   color: white;
-  background-color: cadetblue;
+  background-color: #236B8E;
   text-align: center;
   padding: 20px;
   font-size: 30px;
@@ -82,7 +82,7 @@
 .life-status-tracker {
   opacity: 0.8;
   color: white;
-  background-color: cadetblue;
+  background-color: #236B8E;
   text-align: center;
   font-size: 30px;
   height: auto;
@@ -93,7 +93,7 @@
 .journaling {
   opacity: 0.8;
   color: white;
-  background-color: cadetblue;
+  background-color: #236B8E;
   text-align: center;
   font-size: 30px;
   height: auto;

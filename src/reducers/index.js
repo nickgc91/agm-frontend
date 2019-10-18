@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux'
 import currentUser from './currentUser'
 import userData from './userData'
-import mastermindStatusUpdates from './MastermindStatusUpdates'
+import goalUpdates from './goalUpdates'
+import journalingUpdates from './journalingUpdates'
+import lifeStatusUpdates from './lifeStatusUpdates'
+import actionUpdates from './actionUpdates'
 
 export default combineReducers ({
     user: currentUser,
     userData: userData,
-    mastermindStatusUpdates: mastermindStatusUpdates
+    goalUpdates,
+    journalingUpdates,
+    lifeStatusUpdates,
+    actionUpdates
 })
