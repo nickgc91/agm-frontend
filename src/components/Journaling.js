@@ -36,13 +36,14 @@ class Journaling extends React.Component {
   };
 
 
+
   retrieveJournalData = () => {
     API.getUserData()
       .then(data => {
         if (data.error) {
           throw Error(data.error);
         } else {
-          this.props.giveMeUserData(data);
+          this.props.giveMeUserData(data)
         }
       })
       .catch(error => {
@@ -73,7 +74,7 @@ class Journaling extends React.Component {
             </h1>
           </div>
           <div className="grid-item42">
-              <div style={{ backgroundColor: 'burlywood', borderRadius: "25px", padding: '20px', borderStyle: 'solid' }} >
+              <div style={{ backgroundColor: '#236B8E', borderRadius: "25px", padding: '50px' }} >
           <h1>My Past Entries</h1>
           <div style={{ height: "30px" }}>
               </div>
@@ -81,7 +82,7 @@ class Journaling extends React.Component {
               {this.props.userData.journalings.map(journalEntry => {
                 return (
                   <div key={journalEntry.journal_id}>
-                    <div style={{ borderStyle: "solid", borderRadius: "25px" }}>
+                    <div style={{ borderRadius: "25px" }}>
                       <h1>{journalEntry.journal_title}</h1>
                       <p>{journalEntry.journal_text}</p>
                     </div>
@@ -121,7 +122,6 @@ class Journaling extends React.Component {
                       width: 600,
                       height: 300,
                       padding: 10,
-                      borderStyle: "solid"
                     }}
                     type="TextArea"
                     name="text"
@@ -146,7 +146,8 @@ class Journaling extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userData: state.userData
+  userData: state.userData,
+  masterStatusUpdates: state.mastermindStatusUpdates
 });
 
 const mapDispatchToProps = dispatch => ({

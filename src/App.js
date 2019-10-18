@@ -9,6 +9,7 @@ import GoalsTracker from "./components/GoalsTracker";
 import Journaling from "./components/Journaling";
 
 class App extends React.Component {
+
   componentDidMount() {
     if (localStorage.getItem("token") !== undefined) {
       API.validate()
@@ -17,35 +18,15 @@ class App extends React.Component {
             throw Error(data.error);
           } else {
             this.props.signIn(data);
-            this.getStatusUpdate();
           }
         })
         .catch(error => {
-          this.props.history.push("/signin");
         });
     } else {
-      this.props.history.push("/signin");
+      this.props.history.push('/signin')
     }
   }
 
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
-      .then(data => {
-        if (data.error) {
-          throw Error(data.error);
-        } else {
-          return (
-            data[0].map(item => this.props.addUpdate(item)),
-            data[1].map(item => this.props.addUpdate(item)),
-            data[2].map(item => this.props.addUpdate(item)),
-            data[3].map(item => this.props.addUpdate(item))
-          );
-        }
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
 
   render() {
     return (
@@ -84,6 +65,9 @@ class App extends React.Component {
 const mapDispatchToProps = dispatch => ({
   signIn: user => {
     dispatch({ type: "SIGN_IN", payload: user });
+  },
+  giveMeUserData: user => {
+    dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
   },
   addUpdate: update => {
     dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });

@@ -23,9 +23,8 @@ class NewGoalForm extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-          this.getStatusUpdate()
+          this.getUserData()
           this.props.hideNewGoalForm()
-          this.props.history.push('/goals-tracker')
         }
       })
       .catch(error => {
@@ -33,25 +32,19 @@ class NewGoalForm extends React.Component {
       });
   };
 
-  getStatusUpdate = () => {
-    API.provideMastermindUpdates()
+  getUserData = () => {
+    API.getUserData()
       .then(data => {
         if (data.error) {
           throw Error(data.error);
         } else {
-          return (
-            data[0].map(item => this.props.addUpdate(item)),
-            data[1].map(item => this.props.addUpdate(item)),
-            data[2].map(item => this.props.addUpdate(item)),
-            data[3].map(item => this.props.addUpdate(item))
-          );
+          this.props.giveMeUserData(data);
         }
       })
       .catch(error => {
         alert(error);
       });
   };
-
   
 
   render() {
@@ -103,10 +96,14 @@ class NewGoalForm extends React.Component {
 
 
 const mapStateToProps = state => ({
-  userData: state.userData
+  userData: state.userData,
+  masterStatusUpdates: state.mastermindStatusUpdates
 });
 
 const mapDispatchToProps = dispatch => ({
+  giveMeUserData: user => {
+    dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
+  },
   addUpdate: update => {
     dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
   }

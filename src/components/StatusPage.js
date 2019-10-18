@@ -13,8 +13,11 @@ class StatusPage extends React.Component {
   };
 
   componentDidMount() {
+    console.log('status page component did mount')
     if (localStorage.getItem("token")) {
       this.getUserData()
+      this.getStatusUpdate()
+      console.log(this.props.masterStatusUpdates)
     }
   }
 
@@ -34,24 +37,21 @@ class StatusPage extends React.Component {
       });
   };
 
+  
   getStatusUpdate = () => {
     API.provideMastermindUpdates()
       .then(data => {
         if (data.error) {
           throw Error(data.error);
         } else {
-          return (
-            data[0].map(item => this.props.addUpdate(item)),
-            data[1].map(item => this.props.addUpdate(item)),
-            data[2].map(item => this.props.addUpdate(item)),
-            data[3].map(item => this.props.addUpdate(item))
-          );
+          this.props.addUpdate(data)
         }
       })
       .catch(error => {
         alert(error);
       });
   };
+
 
   getUserData = () => {
     API.getUserData()
@@ -81,7 +81,8 @@ class StatusPage extends React.Component {
         <div className="grid-container">
           <div className="grid-item1">
             <div style={{ bordeStyle: "solid" }}>
-              <h2>
+              <h2
+              style={{ padding: "20px" }}>
                 <span role="img" aria-label="fire">
                   &#128513;
                 </span>{" "}
@@ -94,7 +95,8 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item2">
             <div className="goals-tracker">
-              <h1>My Goals</h1>
+              <h2
+              >My Goals</h2>
               <h3>
                 {" "}
                 You are currently working on {userData.goals[0].numOfGoals}{" "}
@@ -115,12 +117,13 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item3">
             <div className="status-updates">
+              <h2>Latest Mastermind Updates</h2>
               <h3 style={{ color: "black" }}>
                 <u>
                   <b>Latest goal-related activity..</b>
                 </u>
               </h3>
-              {masterStatusUpdates.slice(0, 3).map((update, index) => {
+              {masterStatusUpdates.goalUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
                     {" "}
@@ -138,7 +141,7 @@ class StatusPage extends React.Component {
                   <b>Latest journaling-entry activity..</b>
                 </u>
               </h3>
-              {masterStatusUpdates.slice(3, 6).map((update, index) => {
+              {masterStatusUpdates.journalingUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
                     You've written a new journal entry.
@@ -154,7 +157,7 @@ class StatusPage extends React.Component {
                   <b>Latest life-status-tracking activity..</b>
                 </u>
               </h3>
-              {masterStatusUpdates.slice(6, 9).map((update, index) => {
+              {masterStatusUpdates.lifeStatusUpdates.map((update, index) => {
                 return update[0] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
                     You've updated your life status tracker.
@@ -168,7 +171,7 @@ class StatusPage extends React.Component {
                   <b>Latest action taken..</b>
                 </u>
               </h3>
-              {masterStatusUpdates.slice(9, 12).map((update, index) => {
+              {masterStatusUpdates.actionUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
                     You're taking action on {update[0]} to crush your goals.
@@ -237,19 +240,24 @@ class StatusPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.user,
-  userData: state.userData,
-  masterStatusUpdates: state.mastermindStatusUpdates
+const mapStateToProps = ({ user: currentUser, userData, goalUpdates, journalingUpdates, lifeStatusUpdates, actionUpdates }) => ({
+  currentUser,
+  userData,
+  masterStatusUpdates: {
+    goalUpdates,
+    journalingUpdates,
+    lifeStatusUpdates,
+    actionUpdates,
+  }
 });
 
 const mapDispatchToProps = dispatch => ({
   giveMeUserData: user => {
     dispatch({ type: "GIVE_ME_USER_DATA", payload: user });
   },
-  addUpdate: update => {
-    dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
-  }
+  addUpdate: update => 
+    dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update })
+  
 });
 
 export default withRouter(
