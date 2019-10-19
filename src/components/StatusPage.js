@@ -9,7 +9,8 @@ import LifeStatusUpdateForm from "./LifeStatusUpdateForm";
 
 class StatusPage extends React.Component {
   state = {
-    updateLifeStatusTracker: false
+    updateLifeStatusTracker: false,
+    showUpdateLastAccMeeting: false
   };
 
   componentDidMount() {
@@ -144,11 +145,11 @@ class StatusPage extends React.Component {
               {masterStatusUpdates.journalingUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
-                    You've written a new journal entry.
+                    You've increased your level of self-awareness by writing a new journal entry.
                   </p>
                 ) : (
                   <p key={index}>
-                    {update[1]} has written a new journal entry.
+                    {update[1]} has increased their self-awareness by writing a new journal entry.
                   </p>
                 );
               })}
@@ -160,10 +161,10 @@ class StatusPage extends React.Component {
               {masterStatusUpdates.lifeStatusUpdates.map((update, index) => {
                 return update[0] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
-                    You've updated your life status tracker.
+                    You've spent time reflecting and updated your life status tracker.
                   </p>
                 ) : (
-                  <p key={index}>{update[0]} has updated their life status tracker.</p>
+                  <p key={index}>{update[0]} has spent time reflecting and updated their life status tracker.</p>
                 );
               })}
               <h3 style={{ color: "black" }}>
@@ -174,31 +175,14 @@ class StatusPage extends React.Component {
               {masterStatusUpdates.actionUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
                   <p style={{ color: "#49fb35" }} key={index}>
-                    You're taking action on {update[0]} to crush your goals.
+                    You've made progress on your goal by completing this action: {update[0]}
                   </p>
                 ) : (
                   <p key={index}>
-                  {update[1]} is taking action on {update[0]} (action item) to crush their goal.
+                  {update[1]} has made progress by completing this action: {update[0]}.
                   </p>
                 );
               })}
-            </div>
-          </div>
-          <div className="grid-item4">
-            <div className="accountability-partner">
-              <h1>
-                My accountability partner is: {userData.accountability_partner}{" "}
-              </h1>
-              <h3>The last time we talked was: {userData.last_meeting}</h3>
-              <input className="field" id="date" type="date"></input>
-              <br></br>
-              <br></br>
-              <button
-                onClick={() => this.handleDateUpdateClick()}
-                className="black ui button"
-              >
-                Update
-              </button>
             </div>
           </div>
           <div className="grid-item5">
@@ -219,18 +203,58 @@ class StatusPage extends React.Component {
               )}
             </div>
           </div>
+          <div className="grid-item4">
+            <div className="accountability-partner">
+            { !this.state.showUpdateLastAccMeeting ? 
+            <div style={{ padding: '20px' }}>
+              <h1>
+                My accountability partner is: {userData.accountability_partner.accPartner}{" "}
+              </h1>
+              <h3>The last time we talked was: {userData.accountability_partner.last_meeting}</h3>
+              
+              <button
+                onClick={() => this.setState({ showUpdateLastAccMeeting: true })}
+                className="black ui button"
+              >
+                Update
+              </button></div> : <div style={{ padding: '20px' }}> <input className="field" id="date" type="date"></input>
+              <br></br>
+              <br></br>
+              <button
+                onClick={() => { 
+                  this.handleDateUpdateClick()
+                  this.setState({ showUpdateLastAccMeeting: false }) }}
+                className="black ui button"
+                
+              >
+                Save
+            </button> </div> }
+            </div>
+          </div>
+          { userData.journalings.length === 0 ? 
           <div className="grid-item6">
             <div className="journaling">
-              <h1>My Journal</h1>
-              <h3>Last journal entry: </h3>
+            <h2>Journaling</h2>
+              <h3>You don't currently have any journal entries.</h3>
               <button
                 className="black ui button"
                 onClick={() => this.props.history.push("/journaling")}
               >
-                Do some journaling..
+                My Journal
               </button>
             </div>
-          </div>
+          </div> : <div className="grid-item6">
+            <div className="journaling">
+            <h2>Journaling</h2>
+              <h3>Last journal entry: <br></br> {userData.journalings[0].created}</h3>
+              <button
+                className="black ui button"
+                onClick={() => this.props.history.push("/journaling")}
+              >
+                My Journal
+              </button>
+            </div>
+          </div> }
           <div className="grid-item7">
             <h1>7 FOOTER</h1>
           </div>

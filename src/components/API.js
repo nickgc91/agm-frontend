@@ -7,6 +7,7 @@ const getUserDataUrl = baseUrl + '/getUserData'
 const getAccountabilityPartnerNameUrl = baseUrl + '/getAccPartner'
 const createNewGoalUrl = baseUrl + '/createNewGoal'
 const deleteGoalUrl = baseUrl + '/deleteGoal'
+const deleteJournalEntryUrl = baseUrl + '/deleteJournalEntry'
 const updateItemActionIsCompletedUrl = baseUrl + '/updateActionItemIsCompleted'
 const createNewJournalEntryUrl = baseUrl + '/createNewJournalEntry'
 const updateDateUrl = baseUrl + '/updateAccountabilityDate'
@@ -46,29 +47,34 @@ return fetch(url, {
     return resp.json()})
 }
 
+//login
 const createAccount = user => post(createAccountUrl, user)
 const signIn = user => post(signinUrl, user)
-
 const validate = () => get(validateUrl)
 
+//initial data fetch
 const getUserData = () => get(getUserDataUrl)
 const getAccountabilityPartnerName = () => get(getAccountabilityPartnerNameUrl)
+const provideMastermindUpdates = () => get(provideMastermindUpdatesUrl)
 
+//goals 
 const createNewGoal = goal => post(createNewGoalUrl, goal)
 const deleteGoal = goal => post(deleteGoalUrl, goal)
-
 const updateItemActionIsCompleted = itemId => patch(updateItemActionIsCompletedUrl, itemId)
 
+//journaling
 const createNewJournalEntry = journalEntry => post(createNewJournalEntryUrl, journalEntry)
+const deleteJournalEntry = journal => post(deleteJournalEntryUrl, journal)
 
 const updateDate = date => patch(updateDateUrl, date)
 
 const lifeStatusUpdate = data => patch(lifeStatusUpdateUrl, data)
 
-const provideMastermindUpdates = () => get(provideMastermindUpdatesUrl)
+
+
 
 export default { signIn, createAccount, validate, getUserData,
     getAccountabilityPartnerName, createNewGoal, 
     deleteGoal, updateItemActionIsCompleted,
     createNewJournalEntry, updateDate, lifeStatusUpdate, 
-    provideMastermindUpdates}
+    provideMastermindUpdates, deleteJournalEntry}

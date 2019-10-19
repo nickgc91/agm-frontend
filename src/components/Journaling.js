@@ -8,7 +8,7 @@ import { TextArea } from "semantic-ui-react";
 
 class Journaling extends React.Component {
   componentDidMount() {
-    this.retrieveJournalData()
+    this.retrieveJournalData();
   }
 
   state = {
@@ -27,7 +27,7 @@ class Journaling extends React.Component {
         if (data.error) {
           throw Error(data.error);
         } else {
-            this.retrieveJournalData()
+          this.retrieveJournalData();
         }
       })
       .catch(error => {
@@ -35,15 +35,13 @@ class Journaling extends React.Component {
       });
   };
 
-
-
   retrieveJournalData = () => {
     API.getUserData()
       .then(data => {
         if (data.error) {
           throw Error(data.error);
         } else {
-          this.props.giveMeUserData(data)
+          this.props.giveMeUserData(data);
         }
       })
       .catch(error => {
@@ -74,24 +72,49 @@ class Journaling extends React.Component {
             </h1>
           </div>
           <div className="grid-item42">
-              <div style={{ backgroundColor: '#236B8E', borderRadius: "25px", padding: '50px' }} >
-          <h1>My Past Entries</h1>
-          <div style={{ height: "30px" }}>
-              </div>
-            <div>
-              {this.props.userData.journalings.map(journalEntry => {
-                return (
-                  <div key={journalEntry.journal_id}>
-                    <div style={{ borderRadius: "25px" }}>
-                      <h1>{journalEntry.journal_title}</h1>
-                      <p>{journalEntry.journal_text}</p>
+            <div
+              style={{
+                backgroundColor: "#236B8E",
+                borderRadius: "25px",
+                padding: "50px"
+              }}
+            >
+              <h1>
+                My Past Journaling Entries
+              </h1>
+              <br></br>
+              <div class="ui list">
+                {this.props.userData.journalings.map((journalEntry, index) => {
+                  return (
+                    <div class="item" >
+                      <div style={{ borderRadius: "25px" }}>
+                        <a class="header"
+                        onClick={e => {
+                          debugger
+                          localStorage.setItem("pageShow", e.target.id);
+                          this.props.updateJournalEntryToShow(e.target.id)
+                           this.props.history.push(`/journal-entries/`)}}
+                        >
+                          <h1 style={{ color: 'white' }}  id={index}>{journalEntry.journal_title}</h1>
+                        </a>
+                        <div class="description">
+                          <h4>{journalEntry.journal_text.substr(0, 150)}...</h4>
+                        </div>
+                      </div>
+                      <br></br>
+                      
                     </div>
-                    <br></br>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+              <br></br>
+              <button
+                onClick={() => this.props.history.push("/")}
+                className="ui small button"
+              >
+                Back To Home
+              </button>
             </div>
-          </div>
           </div>
           <div className="grid-item43">
             <div>
@@ -99,8 +122,8 @@ class Journaling extends React.Component {
                 onSubmit={e => {
                   e.persist();
                   e.preventDefault();
-                  e.target.title.value = '' 
-                  e.target.text.value = ''
+                  e.target.title.value = "";
+                  e.target.text.value = "";
                   this.handleNewJournalEntrySubmit(e);
                 }}
                 className="ui form"
@@ -121,25 +144,33 @@ class Journaling extends React.Component {
                     style={{
                       width: 600,
                       height: 300,
-                      padding: 10,
+                      padding: 10
                     }}
                     type="TextArea"
                     name="text"
                     placeholder="Let it flow here.."
                   />
                 </div>
-                <button className="ui green button">Add New Journal Entry</button>
+                <button className="ui green button"
+                style={{ width: '120px' }}
+                >
+                  Save Journal Entry
+                </button>
               </form>
               <br></br> <br></br>
-          <button
-                onClick={() => this.props.history.push('/')}
-                className="ui mini button"
+              <button
+              style={{ width: '120px' }}
+                onClick={() => this.props.history.push("/")}
+                className="ui small button"
               >
                 Back To Home
-            </button>
+              </button>
             </div>
           </div>
         </div>
+        <div className="grid-item77">
+            <h1>7 FOOTER</h1>
+          </div>
       </div>
     );
   }
@@ -147,7 +178,7 @@ class Journaling extends React.Component {
 
 const mapStateToProps = state => ({
   userData: state.userData,
-  masterStatusUpdates: state.mastermindStatusUpdates
+  masterStatusUpdates: state.mastermindStatusUpdates,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -156,6 +187,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addUpdate: update => {
     dispatch({ type: "ADD_MASTERMIND_STATUS_UPDATE", payload: update });
+  },
+  updateJournalEntryToShow: update => {
+    dispatch({ type: "UPDATE_JOURNAL_ENTRY_TO_SHOW", payload: update });
   }
 });
 

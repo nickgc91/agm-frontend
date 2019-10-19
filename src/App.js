@@ -7,6 +7,7 @@ import API from "./components/API";
 import { connect } from "react-redux";
 import GoalsTracker from "./components/GoalsTracker";
 import Journaling from "./components/Journaling";
+import JournalEntries from "./components/JournalEntries"
 
 class App extends React.Component {
 
@@ -15,15 +16,16 @@ class App extends React.Component {
       API.validate()
         .then(data => {
           if (data.error) {
-            throw Error(data.error);
+            this.props.history.push('/signin')
           } else {
+            debugger
             this.props.signIn(data);
           }
         })
         .catch(error => {
         });
     } else {
-      this.props.history.push('/signin')
+      
     }
   }
 
@@ -55,6 +57,13 @@ class App extends React.Component {
           path="/journaling"
           component={routerProps => {
             return <Journaling {...routerProps} />;
+          }}
+        />
+        <Route
+          exact
+          path="/journal-entries"
+          component={routerProps => {
+            return <JournalEntries {...routerProps} />;
           }}
         />
       </div>

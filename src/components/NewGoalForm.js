@@ -87,8 +87,8 @@ class NewGoalForm extends React.Component {
           placeholder="What is a third action that you need to take to achieve this goal?"
         />
       </div>
-      <button className="ui green button">Add New Goal</button>
-      <button onClick={() => this.props.hideNewGoalForm()} className="ui green button">Back To Goals</button>
+      <button className="ui green button">Save Goal</button>
+      <button onClick={() => this.props.hideNewGoalForm()} className="ui green button">Cancel</button>
     </form>
   );
     }
