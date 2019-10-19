@@ -1,17 +1,16 @@
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-rows: 5% 20% 46% auto;
   grid-template-areas:
     "header header header header"
     "goalstracker goalstracker goalstracker updatefeed"
     "lifestatus lifestatus lifestatus updatefeed"
-    "accountabilitypartner accountabilitypartner journaling journaling"
+    "accountabilitypartner accountabilitypartner journaling updatefeed"
     "footer footer footer footer";
 }
 
 .grid-item1 {
-  border-width: 10px;
   grid-area: header;
 }
 
@@ -64,7 +63,7 @@
   font-size: 15px;
   height: auto;
   border-radius: 25px;
-  padding: 20px;
+  padding: 30px;
 }
 
 
@@ -73,7 +72,7 @@
   color: white;
   background-color: #236B8E;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   font-size: 30px;
   height: auto;
   border-radius: 25px;
@@ -98,5 +97,5 @@
   font-size: 30px;
   height: auto;
   border-radius: 25px;
-  padding: 20px;
+  padding: 38px;
 }

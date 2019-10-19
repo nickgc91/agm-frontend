@@ -5,6 +5,7 @@ import goalUpdates from './goalUpdates'
 import journalingUpdates from './journalingUpdates'
 import lifeStatusUpdates from './lifeStatusUpdates'
 import actionUpdates from './actionUpdates'
+import updateJournalEntryToShow from './updateJournalEntryToShow'
 
 export default combineReducers ({
     user: currentUser,
@@ -12,5 +13,6 @@ export default combineReducers ({
     goalUpdates,
     journalingUpdates,
     lifeStatusUpdates,
-    actionUpdates
+    actionUpdates,
+    updateJournalEntryToShow
 })

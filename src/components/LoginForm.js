@@ -60,8 +60,6 @@ class LoginForm extends React.Component {
         this.clearCreateInput(e)
       } else {
         this.props.signIn(data)
-        this.getStatusUpdate()
-        this.getUserData()
         this.props.history.push('/') }
     })
 

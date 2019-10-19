@@ -4,10 +4,11 @@
 .grid-container4 {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 75px 500px;
+    grid-template-rows: auto;
     grid-template-areas:
       "title title"
-      "blog write";
+      "write blog"
+      "footer footer";
   }
 
   .grid-item41 {
@@ -18,15 +19,23 @@
   }
   
   .grid-item42 {
-    padding: 20px;
+    padding: 40px;
     text-align: center;
     grid-area: blog;
   }
 
   .grid-item43 {
-    padding: 20px;
+    padding: 40px;
     text-align: center;
     grid-area: write;
+  }
+
+  .grid-item77 {
+    background-color: black;
+    color: white;
+    grid-area: footer;
+    padding: 15px;
+    text-align: center;
   }
 
   
