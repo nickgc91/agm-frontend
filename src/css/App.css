@@ -1,7 +1,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 5% 20% 46% auto;
+  grid-template-rows: auto;
   grid-template-areas:
     "header header header header"
     "goalstracker goalstracker goalstracker updatefeed"

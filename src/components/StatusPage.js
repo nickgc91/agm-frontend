@@ -53,6 +53,12 @@ class StatusPage extends React.Component {
       });
   };
 
+  toggleState = () => {
+    this.setState({
+      updateLifeStatusTracker: !this.state.updateLifeStatusTracker
+    })
+  }
+
 
   getUserData = () => {
     API.getUserData()
@@ -187,8 +193,9 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item5">
             <div className="life-status-tracker">
-              <Chart />
               {!this.state.updateLifeStatusTracker ? (
+                <div>
+                <Chart />
                 <button
                   onClick={() =>
                     this.setState({ updateLifeStatusTracker: true })
@@ -197,9 +204,11 @@ class StatusPage extends React.Component {
                   style={{ textAlign: "center" }}
                 >
                   Update Life Status
-                </button>
+                </button> </div>
               ) : (
-                <LifeStatusUpdateForm />
+                <div><br></br>
+                <LifeStatusUpdateForm toggleState={this.toggleState}/>
+                </div>
               )}
             </div>
           </div>
