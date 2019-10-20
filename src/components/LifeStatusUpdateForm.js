@@ -51,7 +51,7 @@ class LifeStatusUpdateForm extends React.Component {
     return (
       <div>
         <form >
-          <label>Finances</label>
+          <label style={{ paddingRight: '15px'}}>Finances</label>
           <select
             onChange={e => this.handleChange(e)}
             name="finances"
@@ -90,8 +90,8 @@ class LifeStatusUpdateForm extends React.Component {
               10
             </option>
           </select>
-
-          <label>Dating/Relationship</label>
+          <br></br><br></br>
+          <label style={{ paddingRight: '15px'}}>Dating/Relationship</label>
           <select
             onChange={e => this.handleChange(e)}
             name="dating"
@@ -130,8 +130,8 @@ class LifeStatusUpdateForm extends React.Component {
               10
             </option>
           </select>
-
-          <label>Social</label>
+          <br></br><br></br>
+          <label style={{ paddingRight: '15px'}}>Social</label>
           <select
             onChange={e => this.handleChange(e)}
             name="social"
@@ -170,8 +170,8 @@ class LifeStatusUpdateForm extends React.Component {
               10
             </option>
           </select>
-
-          <label>Spirituality</label>
+          <br></br><br></br>
+          <label style={{ paddingRight: '15px'}}>Spirituality</label>
           <select
             onChange={e => this.handleChange(e)}
             name="spiritual"
@@ -210,8 +210,8 @@ class LifeStatusUpdateForm extends React.Component {
               10
             </option>
           </select>
-
-          <label>Health/Fitness</label>
+          <br></br><br></br>
+          <label style={{ paddingRight: '15px'}}>Health/Fitness</label>
           <select
             onChange={e => this.handleChange(e)}
             name="health"
@@ -251,11 +251,18 @@ class LifeStatusUpdateForm extends React.Component {
             </option>
           </select>
         </form>
+        <br></br>
         <button 
           className="ui green button"
           onClick={() => this.handleLifeStatusUpdateSubmit()}
           >
             Update
+          </button>
+          <button 
+          className="ui black button"
+          onClick={() => this.props.toggleState()}
+          >
+            Back
           </button>
       </div>
     );
