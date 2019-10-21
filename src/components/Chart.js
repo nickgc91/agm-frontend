@@ -64,7 +64,7 @@ class Chart extends Component {
               fontSize: 30,
               text: 'My Life Status Tracker', 
               padding: 30,
-              fontColor: 'black'
+              fontColor: 'white'
             },
             fontColor: 'black',
             legend: {

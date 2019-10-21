@@ -50,7 +50,8 @@ class LifeStatusUpdateForm extends React.Component {
   render() {
     return (
       <div>
-        <form >
+        <form 
+        style={{ borderRadius: '25px' }}>
           <label style={{ paddingRight: '15px'}}>Finances</label>
           <select
             onChange={e => this.handleChange(e)}
@@ -255,12 +256,14 @@ class LifeStatusUpdateForm extends React.Component {
         <button 
           className="ui green button"
           onClick={() => this.handleLifeStatusUpdateSubmit()}
+          style={{ borderRadius: '25px' }}
           >
             Update
           </button>
           <button 
           className="ui black button"
           onClick={() => this.props.toggleState()}
+          style={{ borderRadius: '25px' }}
           >
             Back
           </button>

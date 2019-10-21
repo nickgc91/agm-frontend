@@ -1,12 +1,13 @@
 
 .grid-container2 {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 25% 25% 25% 25%;
     grid-auto-rows: 20%, 60%, 20%;
     grid-template-areas:
-      "header header header header header"
-      "picture picture usergoals usergoals usergoals"
-      "footer footer footer footer footer";
+      "header header header header"
+      "picture picture usergoals usergoals"
+      "footer footer footer footer";
+    padding: 15px;
   }
 
   .grid-container2 > div {
@@ -23,7 +24,6 @@
   .grid-item22 {
     grid-area: picture;
     text-align: center;
-    padding: 30px;
   }
 
   .grid-item33 {
@@ -39,5 +39,12 @@
     grid-area: footer;
   }
 
+  .grid-item77 {
+    background-color: black;
+    color: white;
+    grid-area: footer;
+    padding: 15px;
+    text-align: center;
+  }
 
 

@@ -86,30 +86,30 @@ class GoalsTracker extends React.Component {
       <div>
         <NavBar />
         <div className="grid-container2">
-          <div className="grid-item11">
+          <div className="grid-item11" >
             <h1> Your Current Goals </h1>
           </div>
-          <div className="grid-item22" height="700" width="500">
+          <div className="grid-item22" style={{margin: 'auto' }}>
             <img
-              style={{ borderRadius: "20%" }}
+              style={{ borderRadius: '25px' }}
               src="https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
               alt="Smiley face"
-              height="700"
-              width="auto"
+              height="675px"
+              width="620px"
             />
           </div>
           <div className="grid-item33">
             <div
               style={{
-                borderRadius: "20%",
-                padding: "20px",
+                backgroundColor: '#236B8E',
+                borderRadius: '25px',
+                padding: "30px",
                 height: "auto",
-                width: "550px",
-                margin: "0 auto",
-                border: "solid"
+                width: "620px",
+                margin: 'auto'
               }}
             >
-              <h2>Goals:</h2>
+              <h2>Goals</h2>
               <div style={{ padding: "20px" }}>
                 {this.props.userData.goals[0].numOfGoals === 0 ? (
                   <h3 style={{ color: "red" }}>
@@ -121,21 +121,22 @@ class GoalsTracker extends React.Component {
                     <button
                       onClick={() => this.showActionItems()}
                       className="ui small button"
+                      style={{ width: '120px', borderRadius: "25px"  }}
                     >
                       Show/Hide Action Items
                     </button>
 
                     {this.state.showActionItems ? (
-                      <h4 style={{ color: "#236B8E" }}><u>Click on an action item to mark it as complete
+                      <h4 style={{ color: 'white' }}><u>Click on an action item to mark it as complete
                       </u></h4>
                     ) : null}
-                    <div style={{ padding: "20px", textAlign: "center" }}>
+                    <div style={{ textAlign: "center" }}>
                       <ul
                         style={{ textAlign: "left", display: "inline-block" }}
                       >
                         {this.props.userData.goals.map(mygoal => {
                           return (
-                            <div key={mygoal.goal[0]}>
+                            <div key={mygoal.goal[0]} style={{ paddingTop: '30px' }} >
                               <li style={{ padding: "10px" }}>
                                 {mygoal.goal[2].completion_status === 100.0 ? (
                                   <div>
@@ -176,14 +177,14 @@ class GoalsTracker extends React.Component {
                                   ) + "%"}
                                 </h4>
                               )}{" "}
-                              <br></br><br></br>
+                              <br></br>
                               {/* this next part of code checks if the user wants to see the action items for their goals. 
                       If the goal is completed it is striked out as complete. This logic also looks at whether 
                       the action item is an empty string and does not display it if it is an empty string. */}
                               {this.state.showActionItems ? (
                                 // <div style={{ border: "solid", borderColor: "purple", borderRadius: "20%", padding: '5px' }}>
                                 <div>
-                                <h4 style={{ color: "black" }}> <b>Action Items:</b></h4>
+                                <h4 style={{ color: "black", paddingLeft: "10px", paddingTop: '10px' }}> <b>Action Items:</b></h4>
                                 <ul>
                                   {mygoal.action.map((myAction, index) => {
                                     return myAction.action !== "" ? (
@@ -209,7 +210,7 @@ class GoalsTracker extends React.Component {
                                         >
                                           <h4
                                             style={{
-                                              color: '#236B8E',
+                                              color: 'white',
                                               textAlign: "left",
                                             }}
                                             onClick={() =>
@@ -233,12 +234,12 @@ class GoalsTracker extends React.Component {
                                   key={mygoal.goal[0]}
                                   className="ui small red button"
                                   onClick={e => this.handleDeleteClick(e)}
+                                  style={{ borderRadius: '25px' }}
                                 >
                                   Delete Goal
                                 </button>
                               )}
-                              <br></br>
-                              <br></br>
+                              <br></br><br></br>
                             </div>
                           );
                         })}
@@ -252,6 +253,7 @@ class GoalsTracker extends React.Component {
                 <button
                   onClick={() => this.setState({ showNewGoalForm: true })}
                   className="ui small green button"
+                  style={{ borderRadius: '25px' }}
                 >
                   Add New Goal
                 </button>
@@ -264,12 +266,16 @@ class GoalsTracker extends React.Component {
               <button
                 onClick={() => this.props.history.push("/")}
                 className="ui small button"
+                style={{ borderRadius: '25px' }}
               >
                 Back To Home
               </button>
             </div>
           </div>
         </div>
+        <div className="grid-item77">
+            <h1>7 FOOTER</h1>
+          </div>
       </div>
     );
   }

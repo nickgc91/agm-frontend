@@ -72,16 +72,10 @@ class Journaling extends React.Component {
             </h1>
           </div>
           <div className="grid-item42">
-            <div
-              style={{
-                backgroundColor: "#236B8E",
-                borderRadius: "25px",
-                padding: "50px"
-              }}
-            >
-              <h1>
+            <div className='ele'>
+              <h2>
                 My Past Journaling Entries
-              </h1>
+              </h2>
               <br></br>
               <div class="ui list">
                 {this.props.userData.journalings.map((journalEntry, index) => {
@@ -109,15 +103,16 @@ class Journaling extends React.Component {
               </div>
               <br></br>
               <button
+              style={{ width: '120px', borderRadius: "25px" }}
                 onClick={() => this.props.history.push("/")}
-                className="ui small button"
+                className="ui small black button"
               >
                 Back To Home
               </button>
             </div>
           </div>
           <div className="grid-item43">
-            <div>
+          <div className='ele'>
               <form
                 onSubmit={e => {
                   e.persist();
@@ -129,39 +124,42 @@ class Journaling extends React.Component {
                 className="ui form"
               >
                 <div className="field">
-                  <label>Today's Journal Entry Name</label>
+                  <h2>Today's Journal Entry</h2>
+                  <label style={{ font: 'bold', fontSize: '15px', color: 'white' }}>Title</label>
                   <input
                     onChange={e => this.handleChange(e)}
-                    style={{ width: 300 }}
+                    style={{ width: '280px' }}
                     type="text"
                     name="title"
                     placeholder="What are you writing about today?"
+                    required
                   />
 
                   <label style={{ height: 15 }}></label>
                   <TextArea
                     onChange={e => this.handleChange(e)}
                     style={{
-                      width: 600,
+                      width: '540px',
                       height: 300,
                       padding: 10
                     }}
                     type="TextArea"
                     name="text"
                     placeholder="Let it flow here.."
+                    required
                   />
                 </div>
-                <button className="ui green button"
-                style={{ width: '120px' }}
+                <button className="ui small green button"
+                style={{ width: '120px', borderRadius: "25px" }}
                 >
                   Save Journal Entry
                 </button>
               </form>
               <br></br> <br></br>
               <button
-              style={{ width: '120px' }}
+              style={{ width: '120px', borderRadius: "25px" }}
                 onClick={() => this.props.history.push("/")}
-                className="ui small button"
+                className="ui small black button"
               >
                 Back To Home
               </button>

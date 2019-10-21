@@ -115,6 +115,7 @@ class StatusPage extends React.Component {
               </h3>
               <br />
               <button
+                style={{ width: '120px', borderRadius: "25px"  }}
                 className="black ui button"
                 onClick={() => this.props.history.push("/goals-tracker")}
               >
@@ -201,7 +202,7 @@ class StatusPage extends React.Component {
                     this.setState({ updateLifeStatusTracker: true })
                   }
                   className="black ui button"
-                  style={{ textAlign: "center" }}
+                  style={{ textAlign: "center", width: '120px', borderRadius: "25px" }}
                 >
                   Update Life Status
                 </button> </div>
@@ -222,6 +223,7 @@ class StatusPage extends React.Component {
               <h3>The last time we talked was: {userData.accountability_partner.last_meeting}</h3>
               
               <button
+              style={{ width: '120px', borderRadius: "25px" }}
                 onClick={() => this.setState({ showUpdateLastAccMeeting: true })}
                 className="black ui button"
               >
@@ -234,7 +236,7 @@ class StatusPage extends React.Component {
                   this.handleDateUpdateClick()
                   this.setState({ showUpdateLastAccMeeting: false }) }}
                 className="black ui button"
-                
+                style={{ width: '120px', borderRadius: "25px" }}
               >
                 Save
             </button> </div> }
@@ -246,6 +248,7 @@ class StatusPage extends React.Component {
             <h2>Journaling</h2>
               <h3>You don't currently have any journal entries.</h3>
               <button
+              style={{ width: '120px', borderRadius: "25px" }}
                 className="black ui button"
                 onClick={() => this.props.history.push("/journaling")}
               >
@@ -259,6 +262,7 @@ class StatusPage extends React.Component {
               <button
                 className="black ui button"
                 onClick={() => this.props.history.push("/journaling")}
+                style={{ width: '120px', borderRadius: "25px" }}
               >
                 My Journal
               </button>
