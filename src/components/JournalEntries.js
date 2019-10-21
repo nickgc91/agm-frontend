@@ -60,17 +60,19 @@ class JournalEntries extends React.Component {
               width: '1000px',
               margin: '0 auto',
               textAlign: 'center',
+              opacity: '0.8',
               backgroundColor: "#236B8E",
               borderRadius: "25px",
               padding: '40px'
             }}
           >
             <div>
+              <div style={{ background: 'white', padding: '30px' }} >
               <h1>{this.props.userData.journalings[this.props.journalToShow].journal_title}</h1>
               <p>{this.props.userData.journalings[this.props.journalToShow].journal_text}</p>
               <br></br>
               <button
-              style={{ width: '120px' }}
+              style={{ width: '120px', borderRadius: "25px" }}
                  className="ui small red button"
                  onClick={() => this.handleDeleteClick(this.props.journalToShow)}
                  >
@@ -78,19 +80,21 @@ class JournalEntries extends React.Component {
                 </button>
                 <br></br><br></br>
                 <button
-                style={{ width: '120px' }}
+                style={{ width: '120px', borderRadius: "25px" }}
                 onClick={() => this.props.history.push("/journaling")}
                 className="ui small button"
               >
                 Journaling
               </button>
                 <button
-                style={{ width: '120px' }}
+                style={{ width: '120px', borderRadius: "25px" }}
                 onClick={() => this.props.history.push("/")}
                 className="ui small button"
+              
               >
                 Home
               </button>
+              </div>
             </div>
           </div>
             </div>

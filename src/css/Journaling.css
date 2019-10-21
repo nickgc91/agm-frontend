@@ -14,14 +14,23 @@
   .grid-item41 {
     grid-area: title;
     text-align: center;
-    background-color: cadetblue;
+    background-color: #236B8E;
     padding: 20px;
+    opacity: .8;
   }
   
   .grid-item42 {
     padding: 40px;
     text-align: center;
     grid-area: blog;
+  }
+
+  .ele {
+    background-color: #236B8E;
+    opacity: 0.8;
+    border-radius: 25px;
+    padding: 50px;
+    text-align: center;
   }
 
   .grid-item43 {
