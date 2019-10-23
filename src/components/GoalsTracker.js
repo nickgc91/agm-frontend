@@ -8,7 +8,11 @@ import NewGoalForm from "./NewGoalForm";
 
 class GoalsTracker extends React.Component {
   componentDidMount() {
-    this.retrieveGoalsData();
+    if (localStorage.getItem("token")) {
+      this.retrieveGoalsData()
+    } else {
+      this.props.history.push('/signin')
+    }
   }
 
   goals = [];
@@ -95,8 +99,8 @@ class GoalsTracker extends React.Component {
               style={{
                 backgroundImage: 'url("https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60")',
                 borderRadius: "25px",
-                width: "800px",
                 margin: "auto",
+                opacity: '0.8'
               }}
             >
               

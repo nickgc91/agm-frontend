@@ -49,15 +49,15 @@ class LifeStatusUpdateForm extends React.Component {
 
   render() {
     return (
-      <div style={{ paddingTop: '100px' }} >
+      <div className='your-class'>
         <form 
-        style={{ borderRadius: '25px' }}>
+        style={{ borderRadius: '25px', alignText: 'left'  }}>
           <label style={{ paddingRight: '15px'}}>Finances</label>
           <select
             onChange={e => this.handleChange(e)}
             name="finances"
           >
-            <option type="number" value="0">
+            <option selected="selected" type="number" value="0">
               0
             </option>
             <option type="number" value="1">
@@ -90,14 +90,14 @@ class LifeStatusUpdateForm extends React.Component {
             <option type="number" value="10">
               10
             </option>
-          </select>
+          </select> (Previous score: {this.props.userData.life_status_tracker.finances})
           <br></br><br></br>
           <label style={{ paddingRight: '15px'}}>Dating/Relationship</label>
           <select
             onChange={e => this.handleChange(e)}
             name="dating"
           >
-            <option type="number" value="0">
+            <option selected="selected" type="number" value="0">
               0
             </option>
             <option type="number" value="1">
@@ -130,14 +130,14 @@ class LifeStatusUpdateForm extends React.Component {
             <option type="number" value="10">
               10
             </option>
-          </select>
+          </select> (Previous score: {this.props.userData.life_status_tracker.dating})
           <br></br><br></br>
           <label style={{ paddingRight: '15px'}}>Social</label>
           <select
             onChange={e => this.handleChange(e)}
             name="social"
           >
-            <option type="number" value="0">
+            <option selected="selected" type="number" value="0">
               0
             </option>
             <option type="number" value="1">
@@ -170,14 +170,14 @@ class LifeStatusUpdateForm extends React.Component {
             <option type="number" value="10">
               10
             </option>
-          </select>
+          </select> (Previous score: {this.props.userData.life_status_tracker.social})
           <br></br><br></br>
           <label style={{ paddingRight: '15px'}}>Spirituality</label>
           <select
             onChange={e => this.handleChange(e)}
             name="spiritual"
           >
-            <option type="number" value="0">
+            <option selected="selected" type="number" value="0">
               0
             </option>
             <option type="number" value="1">
@@ -210,14 +210,14 @@ class LifeStatusUpdateForm extends React.Component {
             <option type="number" value="10">
               10
             </option>
-          </select>
+          </select> (Previous score: {this.props.userData.life_status_tracker.spiritual})
           <br></br><br></br>
           <label style={{ paddingRight: '15px'}}>Health/Fitness</label>
           <select
             onChange={e => this.handleChange(e)}
             name="health"
           >
-            <option type="number" value="0">
+            <option selected="selected" type="number" value="0">
               0
             </option>
             <option type="number" value="1">
@@ -250,7 +250,7 @@ class LifeStatusUpdateForm extends React.Component {
             <option type="number" value="10">
               10
             </option>
-          </select>
+          </select> (Previous score: {this.props.userData.life_status_tracker.health})
         </form>
         <br></br>
         <button 

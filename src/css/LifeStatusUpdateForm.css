@@ -1,5 +1,4 @@
 .your-class {
     background-color: red;
-    float:center;
-    padding: 10px;
+    align-content: left;
 }
