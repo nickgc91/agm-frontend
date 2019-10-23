@@ -18,7 +18,7 @@ class App extends React.Component {
           if (data.error) {
             this.props.history.push('/signin')
           } else {
-            debugger
+            
             this.props.signIn(data);
           }
         })
@@ -32,7 +32,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='main-container'>
         <Route
           exact
           path="/signin"
@@ -43,7 +43,9 @@ class App extends React.Component {
         <Route
           exact
           path="/"
-          component={routerProps => <StatusPage {...routerProps} />}
+          component={routerProps => {
+            return <StatusPage {...routerProps} />}
+          }
         />
         <Route
           exact

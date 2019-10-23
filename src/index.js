@@ -14,10 +14,10 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div style={{ position: 'relative', 'min-height': '100vh' }}>
-      <NavBar />
+      <NavBar id='nav'/>
       <App />
       <div style={{   position: 'absolute', bottom: '0', width: '100%', height: '5rem' }} className="grid-item77">
-            <h1>AGM All Rights Reserved</h1>
+            <h1  >AGM All Rights Reserved</h1>
       </div>
       </div>
     </Router>

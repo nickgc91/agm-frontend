@@ -13,11 +13,11 @@ class StatusPage extends React.Component {
   };
 
   componentDidMount() {
-    console.log('status page component did mount')
     if (localStorage.getItem("token")) {
       this.getUserData()
       this.getStatusUpdate()
-      console.log(this.props.masterStatusUpdates)
+    } else {
+      this.props.history.push('/signin')
     }
   }
 
@@ -110,7 +110,7 @@ class StatusPage extends React.Component {
               </h3>
               <br />
               <button
-                style={{ width: '120px', borderRadius: "25px"  }}
+                style={{ width: '120px', borderRadius: "25px" }}
                 className="black ui button"
                 onClick={() => this.props.history.push("/goals-tracker")}
               >
@@ -121,66 +121,66 @@ class StatusPage extends React.Component {
           <div className="grid-item3">
             <div className="status-updates">
               <h2>Latest Mastermind Updates</h2>
-              <h3 style={{ color: "black" }}>
-                <u>
+              <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
+               
                   <b>Latest goal-related activity..</b>
-                </u>
+                
               </h3>
               {masterStatusUpdates.goalUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
-                  <p style={{ color: "#49fb35" }} key={index}>
+                  <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                     {" "}
                     You've made progress working on this goal: {update[0]}.
                   </p>
                 ) : (
-                  <p key={index}>
+                  <p style={{ borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                     {update[1]} has made progress working on this goal:{" "}
                     {update[0]}.
                   </p>
                 );
-              })}
-              <h3 style={{ color: "black" }}>
-                <u>
+              })} 
+              <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
+              
                   <b>Latest journaling-entry activity..</b>
-                </u>
+                
               </h3>
               {masterStatusUpdates.journalingUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
-                  <p style={{ color: "#49fb35" }} key={index}>
+                  <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                     You've increased your level of self-awareness by writing a new journal entry.
                   </p>
                 ) : (
-                  <p key={index}>
+                  <p key={index} style={{ borderBottom: 'ridge', borderColor: 'gray' }}>
                     {update[1]} has increased their self-awareness by writing a new journal entry.
                   </p>
                 );
               })}
-              <h3 style={{ color: "black" }}>
-                <u>
+              <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
+              
                   <b>Latest life-status-tracking activity..</b>
-                </u>
+              
               </h3>
               {masterStatusUpdates.lifeStatusUpdates.map((update, index) => {
                 return update[0] === currentUser.username ? (
-                  <p style={{ color: "#49fb35" }} key={index}>
+                  <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                     You've spent time reflecting and updated your life status tracker.
                   </p>
                 ) : (
-                  <p key={index}>{update[0]} has spent time reflecting and updated their life status tracker.</p>
+                  <p key={index} style={{ borderBottom: 'ridge', borderColor: 'gray' }}>{update[0]} has spent time reflecting and updated their life status tracker.</p>
                 );
               })}
-              <h3 style={{ color: "black" }}>
-                <u>
+              <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
+                
                   <b>Latest action taken..</b>
-                </u>
+                
               </h3>
               {masterStatusUpdates.actionUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
-                  <p style={{ color: "#49fb35" }} key={index}>
+                  <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                     You've made progress on your goal by completing this action: {update[0]}
                   </p>
                 ) : (
-                  <p key={index}>
+                  <p style={{ borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                   {update[1]} has made progress by completing this action: {update[0]}.
                   </p>
                 );
@@ -190,8 +190,10 @@ class StatusPage extends React.Component {
           <div className="grid-item5">
             <div className="life-status-tracker">
               {!this.state.updateLifeStatusTracker ? (
-                <div style={{ padding: '20px' }}>
+                <div>
+                <div style={{ paddingBottom: '20px' }}>
                 <Chart />
+                </div>
                 <button
                   onClick={() =>
                     this.setState({ updateLifeStatusTracker: true })

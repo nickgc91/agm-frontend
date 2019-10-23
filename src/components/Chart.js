@@ -55,16 +55,16 @@ class Chart extends Component {
 
       <div className="chart">
         <Bar
-          height='75px'
           data={this.chartData}
           options={{
             layout: {
-                padding: 5},
+              padding: 0
+                },
             title: {
               display: true,
               fontSize: 30,
               text: 'My Life Status Tracker', 
-              padding: 0,
+              padding: 10,
               fontColor: 'white'
             },
             fontColor: 'black',
@@ -74,7 +74,7 @@ class Chart extends Component {
             scales: {
                 yAxes: [{
                     ticks: {
-                        fontSize: 16,
+                        fontSize: 13,
                         beginAtZero:true,
                         min: 0,
                         max: 10,
@@ -83,7 +83,7 @@ class Chart extends Component {
                   }],
                   xAxes: [{
                     ticks: {
-                        fontSize: 16,  
+                        fontSize: 13,  
                         fontColor: 'black' 
                     }
                   }]

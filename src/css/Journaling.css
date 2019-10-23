@@ -1,26 +1,13 @@
 
-
-
-.grid-container4 {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-auto-rows: 10%, 80%, 10%;
-    grid-template-areas:
-      "title title"
-      "write blog"
-      "footer footer";
-  }
-
   .grid-item41 {
     grid-area: title;
     text-align: center;
-    background-color: #236B8E;
-    padding: 20px;
     opacity: .8;
+    padding: 50px;
   }
   
   .grid-item42 {
-    padding: 40px;
+    padding: 20px;
     text-align: center;
     grid-area: blog;
   }
@@ -29,22 +16,16 @@
     background-color: #236B8E;
     opacity: 0.8;
     border-radius: 25px;
-    padding: 50px;
+    padding: 20px;
     text-align: center;
   }
 
   .grid-item43 {
-    padding: 40px;
+    padding: 20px;
     text-align: center;
     grid-area: write;
   }
 
-  .grid-item77 {
-    background-color: black;
-    color: white;
-    grid-area: footer;
-    margin: auto;
-    text-align: center;
-  }
+ 
 
   
