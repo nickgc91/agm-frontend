@@ -4,9 +4,9 @@
   grid-template-rows: auto;
   grid-template-areas:
     "header header header header"
-    "goalstracker goalstracker goalstracker updatefeed"
+    "goalstracker goalstracker journaling updatefeed"
     "lifestatus lifestatus lifestatus updatefeed"
-    "accountabilitypartner accountabilitypartner journaling updatefeed"
+    "accountabilitypartner  accountabilitypartner accountabilitypartner accountabilitypartner"
     "footer footer footer footer";
 }
 
@@ -61,7 +61,7 @@
   background-color: #236B8E;
   text-align: center;
   font-size: 15px;
-  height: auto;
+  height: 880px;
   border-radius: 25px;
   padding: 30px;
 }
@@ -84,7 +84,7 @@
   background-color: #236B8E;
   text-align: center;
   font-size: 30px;
-  height: auto;
+  height: 600px;
   border-radius: 25px;
   padding: 20px;
 }
@@ -95,7 +95,7 @@
   background-color: #236B8E;
   text-align: center;
   font-size: 30px;
-  height: auto;
+  height: 250px;
   border-radius: 25px;
-  padding: 38px;
+  padding: 20px;
 }

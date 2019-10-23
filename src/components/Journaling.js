@@ -53,9 +53,8 @@ class Journaling extends React.Component {
     if (!this.props.userData) return <div>Loading user info</div>;
 
     return (
-      <div>
-        <NavBar />
-        <div className="grid-container4">
+      <div >
+        <div className="grid-container4" >
           <div className="grid-item41">
             <h1>
               <i
@@ -140,7 +139,7 @@ class Journaling extends React.Component {
                     onChange={e => this.handleChange(e)}
                     style={{
                       width: '540px',
-                      height: 300,
+                      height: 'auto',
                       padding: 10
                     }}
                     type="TextArea"
@@ -155,20 +154,11 @@ class Journaling extends React.Component {
                   Save Journal Entry
                 </button>
               </form>
-              <br></br> <br></br>
-              <button
-              style={{ width: '120px', borderRadius: "25px" }}
-                onClick={() => this.props.history.push("/")}
-                className="ui small black button"
-              >
-                Back To Home
-              </button>
+              
             </div>
           </div>
         </div>
-        <div className="grid-item77">
-            <h1>7 FOOTER</h1>
-          </div>
+      
       </div>
     );
   }

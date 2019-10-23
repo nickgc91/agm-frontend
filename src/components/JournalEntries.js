@@ -50,7 +50,6 @@ class JournalEntries extends React.Component {
 
     return (
       <div>
-        <NavBar />
         <div style={{
         textAlign: 'center',
         padding: '100px'

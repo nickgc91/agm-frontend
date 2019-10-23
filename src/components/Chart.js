@@ -55,6 +55,7 @@ class Chart extends Component {
 
       <div className="chart">
         <Bar
+          height='75px'
           data={this.chartData}
           options={{
             layout: {
@@ -63,7 +64,7 @@ class Chart extends Component {
               display: true,
               fontSize: 30,
               text: 'My Life Status Tracker', 
-              padding: 30,
+              padding: 0,
               fontColor: 'white'
             },
             fontColor: 'black',

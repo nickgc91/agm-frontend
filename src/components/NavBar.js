@@ -24,7 +24,10 @@ class NavBar extends Component {
   render() {
 
     return (
-      <Segment inverted>
+    
+      <Segment inverted style={{
+        position: 'fixed', top: '0', width: '100%', 'z-index': '9999'
+      }}>
         <Menu inverted secondary>
           <Menu.Item
             name='home'
@@ -45,6 +48,7 @@ class NavBar extends Component {
           />
         </Menu>
       </Segment>
+      
     )
   }
 }
