@@ -122,26 +122,42 @@ class StatusPage extends React.Component {
             <div className="status-updates">
               <h2>Latest Mastermind Updates</h2>
               <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
+                
+                <b>Latest Action Taken</b>
+              
+            </h3>
+            {masterStatusUpdates.actionUpdates.map((update, index) => {
+              return update[1] === currentUser.username ? (
+                <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
+                  You've made progress on your goals by completing this action: {update[0]}
+                </p>
+              ) : (
+                <p style={{ borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
+                {update[1]} has made progress on his goals by completing this action: {update[0]}.
+                </p>
+              );
+            })}
+              <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
                
-                  <b>Latest goal-related activity..</b>
+                  <b>Latest Goals Created</b>
                 
               </h3>
               {masterStatusUpdates.goalUpdates.map((update, index) => {
                 return update[1] === currentUser.username ? (
                   <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
                     {" "}
-                    You've made progress working on this goal: {update[0]}.
+                    You've started working on this goal: {update[0]}.
                   </p>
                 ) : (
                   <p style={{ borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
-                    {update[1]} has made progress working on this goal:{" "}
+                    {update[1]} has started working on this goal:{" "}
                     {update[0]}.
                   </p>
                 );
               })} 
               <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
               
-                  <b>Latest journaling-entry activity..</b>
+                  <b>Latest Journals Written</b>
                 
               </h3>
               {masterStatusUpdates.journalingUpdates.map((update, index) => {
@@ -157,7 +173,7 @@ class StatusPage extends React.Component {
               })}
               <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
               
-                  <b>Latest life-status-tracking activity..</b>
+                  <b>Latest Life Status Updates</b>
               
               </h3>
               {masterStatusUpdates.lifeStatusUpdates.map((update, index) => {
@@ -167,22 +183,6 @@ class StatusPage extends React.Component {
                   </p>
                 ) : (
                   <p key={index} style={{ borderBottom: 'ridge', borderColor: 'gray' }}>{update[0]} has spent time reflecting and updated their life status tracker.</p>
-                );
-              })}
-              <h3 style={{ color: "black", border: 'solid', borderRadius: '25px', padding: '7px' }}>
-                
-                  <b>Latest action taken..</b>
-                
-              </h3>
-              {masterStatusUpdates.actionUpdates.map((update, index) => {
-                return update[1] === currentUser.username ? (
-                  <p style={{ color: "#49fb35", borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
-                    You've made progress on your goal by completing this action: {update[0]}
-                  </p>
-                ) : (
-                  <p style={{ borderBottom: 'ridge', borderColor: 'gray' }} key={index}>
-                  {update[1]} has made progress by completing this action: {update[0]}.
-                  </p>
                 );
               })}
             </div>
