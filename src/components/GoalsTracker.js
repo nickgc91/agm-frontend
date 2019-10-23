@@ -83,33 +83,38 @@ class GoalsTracker extends React.Component {
     if (!this.props.userData) return <div>Loading user info</div>;
 
     return (
-      <div>
-        <NavBar />
+      <div style={{ paddingBottom: "120px" }}>
         <div className="grid-container2">
-          <div className="grid-item11" >
+          <div className="grid-item11">
             <h1> Your Current Goals </h1>
           </div>
-          <div className="grid-item22" style={{margin: 'auto' }}>
-            <img
-              style={{ borderRadius: '25px' }}
-              src="https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-              alt="Smiley face"
-              height="675px"
-              width="620px"
-            />
-          </div>
+          
           <div className="grid-item33">
-            <div
+
+          <div
               style={{
-                backgroundColor: '#236B8E',
-                borderRadius: '25px',
-                padding: "30px",
-                height: "auto",
-                width: "620px",
-                margin: 'auto'
+                backgroundImage: 'url("https://images.unsplash.com/photo-1543682704-15adeb008ac4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60")',
+                borderRadius: "25px",
+                width: "800px",
+                margin: "auto",
               }}
             >
+              
+              <div style={{
+                backgroundColor: "#236B8E",
+                borderRadius: "25px",
+                padding: "30px",
+                margin: "auto",
+                opacity: '0.9'
+              }}>
               <h2>Goals</h2>
+
+              {this.state.showNewGoalForm ? (
+              <NewGoalForm
+                style={{ borderRadius: "25px" }}
+                hideNewGoalForm={this.hideNewGoalForm}
+              />
+            ) : (
               <div style={{ padding: "20px" }}>
                 {this.props.userData.goals[0].numOfGoals === 0 ? (
                   <h3 style={{ color: "red" }}>
@@ -118,25 +123,31 @@ class GoalsTracker extends React.Component {
                   </h3>
                 ) : (
                   <div>
+                    {this.state.showActionItems ? <button
+                      onClick={() => this.showActionItems()}
+                      className="ui small button"
+                      style={{ width: "120px", borderRadius: "25px" }}
+                    >
+                      Hide Action Items
+                    </button>
+                    :
                     <button
                       onClick={() => this.showActionItems()}
                       className="ui small button"
-                      style={{ width: '120px', borderRadius: "25px"  }}
+                      style={{ width: "120px", borderRadius: "25px" }}
                     >
-                      Show/Hide Action Items
-                    </button>
-
-                    {this.state.showActionItems ? (
-                      <h4 style={{ color: 'white' }}><u>Click on an action item to mark it as complete
-                      </u></h4>
-                    ) : null}
+                      Show Action Items
+                    </button> }
                     <div style={{ textAlign: "center" }}>
                       <ul
                         style={{ textAlign: "left", display: "inline-block" }}
                       >
                         {this.props.userData.goals.map(mygoal => {
                           return (
-                            <div key={mygoal.goal[0]} style={{ paddingTop: '30px' }} >
+                            <div
+                              key={mygoal.goal[0]}
+                              style={{ paddingTop: "30px" }}
+                            >
                               <li style={{ padding: "10px" }}>
                                 {mygoal.goal[2].completion_status === 100.0 ? (
                                   <div>
@@ -184,48 +195,64 @@ class GoalsTracker extends React.Component {
                               {this.state.showActionItems ? (
                                 // <div style={{ border: "solid", borderColor: "purple", borderRadius: "20%", padding: '5px' }}>
                                 <div>
-                                <h4 style={{ color: "black", paddingLeft: "10px", paddingTop: '10px' }}> <b>Action Items:</b></h4>
-                                <ul>
-                                  {mygoal.action.map((myAction, index) => {
-                                    return myAction.action !== "" ? (
-                                      myAction.isComplete ? (
-                                        <li key={index}>
-                                          <h4
-                                            style={{ color: 'black',
-                                              textDecoration: "line-through"
-                                            }}
+                                  <h4
+                                    style={{
+                                      color: "black",
+                                      paddingLeft: "10px",
+                                      paddingTop: "10px"
+                                    }}
+                                  >
+                                    {" "}
+                                    <b>Action Items:</b>
+                                  </h4>
+                                  <ul>
+                                    {mygoal.action.map((myAction, index) => {
+                                      return myAction.action !== "" ? (
+                                        myAction.isComplete ? (
+                                          <li key={index}
+                                          style={{ padding: "10px" }}>
+                                            <h4
+                                              style={{
+                                                color: "black",
+                                                textDecoration: "line-through"
+                                              }}
+                                            >
+                                              {myAction.action}{" "}
+                                              <i
+                                                className="em em-white_check_mark"
+                                                aria-roledescription="presentation"
+                                                aria-label="WHITE HEAVY CHECK MARK"
+                                              ></i>
+                                            </h4>
+                                          </li>
+                                        ) : (
+                                          <li
+                                            key={index}
+                                            style={{ padding: "10px" }}
                                           >
-                                            {myAction.action}{" "}
-                                            <i
-                                              className="em em-white_check_mark"
-                                              aria-roledescription="presentation"
-                                              aria-label="WHITE HEAVY CHECK MARK"
-                                            ></i>
-                                          </h4>
-                                        </li>
-                                      ) : (
-                                        <li
-                                          key={index}
-                                          style={{ padding: "5px" }}
-                                        >
-                                          <h4
-                                            style={{
-                                              color: 'white',
-                                              textAlign: "left",
-                                            }}
+                                            <h4
+                                              style={{
+                                                paddingRight: '15px',
+                                                color: "white",
+                                                textAlign: "left",
+                                                display: 'inline-block'
+                                              }}
+                                            >
+                                            {myAction.action}
+                                            </h4>
+                                            <button
                                             onClick={() =>
                                               this.handleCompletedActionItem(
                                                 myAction.id
                                               )
                                             }
-                                          >
-                                            <u>{myAction.action}</u>
-                                          </h4>
-                                        </li>
-                                      )
-                                    ) : null;
-                                  })}
-                                </ul> </div>
+                                            >Completed</button>
+                                          </li>
+                                        )
+                                      ) : null;
+                                    })}
+                                  </ul>{" "}
+                                </div>
                               ) : null}
                               <br></br>
                               {this.props.userData.goals[0].numOfGoals === 0 ||
@@ -234,12 +261,13 @@ class GoalsTracker extends React.Component {
                                   key={mygoal.goal[0]}
                                   className="ui small red button"
                                   onClick={e => this.handleDeleteClick(e)}
-                                  style={{ borderRadius: '25px' }}
+                                  style={{ borderRadius: "25px" }}
                                 >
                                   Delete Goal
                                 </button>
                               )}
-                              <br></br><br></br>
+                              <br></br>
+                              <br></br>
                             </div>
                           );
                         })}
@@ -248,34 +276,32 @@ class GoalsTracker extends React.Component {
                   </div>
                 )}
               </div>
-
+                )}
               {!this.state.showNewGoalForm ? (
                 <button
                   onClick={() => this.setState({ showNewGoalForm: true })}
                   className="ui small green button"
-                  style={{ borderRadius: '25px' }}
+                  style={{ borderRadius: "25px" }}
                 >
                   Add New Goal
                 </button>
               ) : null}
-              {this.state.showNewGoalForm ? (
-                <NewGoalForm hideNewGoalForm={this.hideNewGoalForm} />
-              ) : null}
+
               <br></br>
               <br></br>
               <button
                 onClick={() => this.props.history.push("/")}
                 className="ui small button"
-                style={{ borderRadius: '25px' }}
+                style={{ borderRadius: "25px" }}
               >
                 Back To Home
               </button>
+              
+              </div>
             </div>
+            
           </div>
         </div>
-        <div className="grid-item77">
-            <h1>7 FOOTER</h1>
-          </div>
       </div>
     );
   }

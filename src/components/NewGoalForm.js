@@ -49,6 +49,7 @@ class NewGoalForm extends React.Component {
 
   render() {
       return (
+    <div style={{ background: '#236B8E', margin: '100px', width: 'fit'}}>
     <form
       onSubmit={e => {
         e.persist();
@@ -90,6 +91,7 @@ class NewGoalForm extends React.Component {
       <button className="ui green button">Save Goal</button>
       <button onClick={() => this.props.hideNewGoalForm()} className="ui green button">Cancel</button>
     </form>
+    </div>
   );
     }
 };

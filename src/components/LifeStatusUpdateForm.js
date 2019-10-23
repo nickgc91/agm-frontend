@@ -49,7 +49,7 @@ class LifeStatusUpdateForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ paddingTop: '100px' }} >
         <form 
         style={{ borderRadius: '25px' }}>
           <label style={{ paddingRight: '15px'}}>Finances</label>

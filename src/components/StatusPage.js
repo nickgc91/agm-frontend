@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import API from "./API";
 import Chart from "./Chart";
-import NavBar from "./NavBar";
 import LifeStatusUpdateForm from "./LifeStatusUpdateForm";
 
 class StatusPage extends React.Component {
@@ -81,10 +80,7 @@ class StatusPage extends React.Component {
       return <div>Loading user info</div>;
 
     return (
-      <div>
-        <NavBar
-          setAccountabilityPartnerToEmpty={this.setAccountabilityPartnerToEmpty}
-        />
+      <div style={{ 'padding-bottom': '5.5rem' }} >
         <div className="grid-container">
           <div className="grid-item1">
             <div style={{ bordeStyle: "solid" }}>
@@ -93,7 +89,7 @@ class StatusPage extends React.Component {
                 <span role="img" aria-label="fire">
                   &#128513;
                 </span>{" "}
-                Welcome back {currentUser.username}{" "}
+                Welcome {currentUser.username}{" "}
                 <span role="img" aria-label="fire">
                   &#128513;
                 </span>
@@ -110,8 +106,7 @@ class StatusPage extends React.Component {
                 goals.
               </h3>
               <h3>
-                Latest goal -->
-                {userData.goals[userData.goals.length - 1].goal[1]}
+                Latest goal --> {userData.goals[userData.goals.length - 1].goal[1]}
               </h3>
               <br />
               <button
@@ -195,7 +190,7 @@ class StatusPage extends React.Component {
           <div className="grid-item5">
             <div className="life-status-tracker">
               {!this.state.updateLifeStatusTracker ? (
-                <div>
+                <div style={{ padding: '20px' }}>
                 <Chart />
                 <button
                   onClick={() =>
@@ -228,7 +223,7 @@ class StatusPage extends React.Component {
                 className="black ui button"
               >
                 Update
-              </button></div> : <div style={{ padding: '20px' }}> <input className="field" id="date" type="date"></input>
+              </button></div> : <div style={{ padding: '20px' }}> <label style={{ paddingRight: '20px' }}>When did you last talk to you accountability partner?</label> <input className="field" id="date" type="date"></input>
               <br></br>
               <br></br>
               <button
@@ -258,7 +253,7 @@ class StatusPage extends React.Component {
           </div> : <div className="grid-item6">
             <div className="journaling">
             <h2>Journaling</h2>
-              <h3>Last journal entry: <br></br> {userData.journalings[0].created}</h3>
+              <h3>Latest journal entry: <br></br><br></br>{userData.journalings[0].journal_title} was written on {userData.journalings[0].created}</h3> <br></br>
               <button
                 className="black ui button"
                 onClick={() => this.props.history.push("/journaling")}
@@ -268,9 +263,7 @@ class StatusPage extends React.Component {
               </button>
             </div>
           </div> }
-          <div className="grid-item7">
-            <h1>7 FOOTER</h1>
-          </div>
+        
         </div>
       </div>
     );
