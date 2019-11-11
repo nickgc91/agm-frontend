@@ -7,7 +7,6 @@
       "header header "
       "usergoals usergoals"
       "footer footer";
-    padding: 35px;
   }
 
   .grid-container2 > div {
@@ -26,18 +25,5 @@
       grid-area: usergoals;
   }
 
-  .grid-item44 {
-    background-color: black;
-    color: white;
-    grid-area: footer;
-  }
-
-  .grid-item77 {
-    background-color: black;
-    color: white;
-    grid-area: footer;
-    padding: 15px;
-    text-align: center;
-  }
 
 

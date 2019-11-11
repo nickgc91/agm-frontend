@@ -105,3 +105,12 @@
   border-radius: 25px;
   padding: 40px;
 }
+
+
+.grid-item77 {
+  background-color: black;
+  color: white;
+  grid-area: footer;
+  padding: 15px;
+  text-align: center;
+}

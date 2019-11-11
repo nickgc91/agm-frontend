@@ -64,7 +64,7 @@ class Journaling extends React.Component {
     if (!this.props.userData) return <div>Loading user info</div>;
 
     return (
-      <div>
+      
         <div className="grid-container4">
           <div className="grid-item41">
             <h1>
@@ -179,7 +179,7 @@ class Journaling extends React.Component {
             </div>
                   </div> }
         </div>
-      </div>
+     
     );
   }
 }
