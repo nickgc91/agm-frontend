@@ -225,7 +225,7 @@ class StatusPage extends React.Component {
                 className="black ui button"
               >
                 Update
-              </button></div> : <div style={{ padding: '20px' }}> <label style={{ paddingRight: '20px' }}>When did you last talk to you accountability partner?</label> <input className="field" id="date" type="date"></input>
+              </button></div> : <div style={{ padding: '20px' }}> <label style={{ paddingRight: '20px' }}>When did you last talk to you accountability partner?</label> <br></br> <br></br><input style={{borderRadius: "25px"}} className="field" id="date" type="date"></input>
               <br></br>
               <br></br>
               <button
@@ -255,7 +255,7 @@ class StatusPage extends React.Component {
           </div> : <div className="grid-item6">
             <div className="journaling">
             <h2>Journaling</h2>
-              <h3>Latest journal entry: <br></br><br></br>{userData.journalings[0].journal_title} was written on {userData.journalings[0].created}</h3> <br></br>
+              <h3>Latest journal entry: <br></br><br></br>{userData.journalings[0].journal_title} was written on <br></br> {userData.journalings[0].created}</h3> <br></br>
               <button
                 className="black ui button"
                 onClick={() => this.props.history.push("/journaling")}
