@@ -13,7 +13,7 @@ import store from "./store";
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <div style={{ position: 'relative', 'min-height': '100vh' }}>
+      <div style={{ position: 'relative', minHeight: '100vh' }}>
       <NavBar id='nav'/>
       <App />
       <div style={{   position: 'absolute', bottom: '0', width: '100%', height: '5rem' }} className="grid-item77">

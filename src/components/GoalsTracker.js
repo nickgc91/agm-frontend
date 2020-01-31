@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/GoalsTracker.css";
 import API from "./API";
-import NavBar from "./NavBar";
 import NewGoalForm from "./NewGoalForm";
 
 class GoalsTracker extends React.Component {

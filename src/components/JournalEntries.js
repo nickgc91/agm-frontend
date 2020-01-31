@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/Journaling.css";
 import API from "./API";
-import NavBar from "./NavBar";
 
 class JournalEntries extends React.Component {
   componentDidMount() {
