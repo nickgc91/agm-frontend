@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "../css/Journaling.css";
 import API from "./API";
-import NavBar from "./NavBar";
 import { TextArea } from "semantic-ui-react";
 
 class Journaling extends React.Component {
@@ -97,10 +96,9 @@ class Journaling extends React.Component {
                   return (
                     <div class="item">
                       <div style={{ borderRadius: "25px" }}>
-                        <a
+                        <h3
                           class="header"
                           onClick={e => {
-                            debugger;
                             localStorage.setItem("pageShow", e.target.id);
                             this.props.updateJournalEntryToShow(e.target.id);
                             this.props.history.push(`/journal-entries/`);
@@ -109,7 +107,7 @@ class Journaling extends React.Component {
                           <h1 style={{ color: "white" }} id={index}>
                             {journalEntry.journal_title}
                           </h1>
-                        </a>
+                          </h3>
                         <div class="description">
                           <h4>{journalEntry.journal_text.substr(0, 150)}...</h4>
                         </div>

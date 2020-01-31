@@ -27,7 +27,7 @@ class NavBar extends Component {
     
       <div style={{ contentAlign: 'center'}}>
       <Segment inverted style={{
-        position: 'fixed', top: '0', width: '100%', 'z-index': '9999'
+        position: 'fixed', top: '0', width: '100%', zIndex: '9999'
       }}>
         <Menu className='ui center aligned grid' inverted secondary>
           <Menu.Item

@@ -80,7 +80,7 @@ class StatusPage extends React.Component {
       return <div>Loading user info</div>;
 
     return (
-      <div style={{ 'padding-bottom': '5.5rem' }} >
+      <div style={{ paddingBottom: '5.5rem' }} >
         <div className="grid-container">
           <div className="grid-item1">
             <div style={{ bordeStyle: "solid" }}>
