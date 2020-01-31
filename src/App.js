@@ -32,6 +32,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <body>
       <div className='main-container'>
         <Route
           exact
@@ -69,6 +70,7 @@ class App extends React.Component {
           }}
         />
       </div>
+      </body>
     );
   }
 }
