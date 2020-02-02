@@ -49,7 +49,8 @@ class NewGoalForm extends React.Component {
 
   render() {
       return (
-    <div style={{ background: '#236B8E', margin: '100px', width: 'fit'}}>
+    <div >
+    <div style={{ background: '#236B8E' }}>
     <form
       onSubmit={e => {
         e.persist();
@@ -62,7 +63,7 @@ class NewGoalForm extends React.Component {
         <label>Goal Name</label>
         <input
           onChange={e => this.handleChange(e)}
-          style={{ width: 300 }}
+          // style={{ width: 300 }}
           type="text"
           name="goalName"
           placeholder="Type your goal here.."
@@ -70,20 +71,20 @@ class NewGoalForm extends React.Component {
         <label>Action Item 1</label>
         <TextArea
         onChange={e => this.handleChange(e)}
-        style={{ width: 300 }}
+        // style={{ width: 300 }}
         name="actionItem1"
         placeholder="What is one action that you need to take to achieve this goal?"/>
         <label>Action Item 2</label>
         <TextArea 
           onChange={e => this.handleChange(e)}
-          style={{ width: 300 }}
+          // style={{ width: 300 }}
           name="actionItem2"
           placeholder="What is a second action that you need to take to achieve this goal?"
         />{" "}
         <label>Action Item 3</label>
         <TextArea
           onChange={e => this.handleChange(e)}
-          style={{ width: 300 }}
+          // style={{ width: 300 }}
           name="actionItem3"
           placeholder="What is a third action that you need to take to achieve this goal?"
         />
@@ -91,6 +92,7 @@ class NewGoalForm extends React.Component {
       <button className="ui green button">Save Goal</button>
       <button onClick={() => this.props.hideNewGoalForm()} className="ui green button">Cancel</button>
     </form>
+    </div>
     </div>
   );
     }

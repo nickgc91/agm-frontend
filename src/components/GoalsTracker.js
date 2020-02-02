@@ -86,7 +86,7 @@ class GoalsTracker extends React.Component {
     if (!this.props.userData) return <div>Loading user info</div>;
 
     return (
-      <div style={{ paddingBottom: "100px" }}>
+      <div className='goal-container'>
         <div className="grid-container2">
           <div className="grid-item11">
             <h1> Your Current Goals </h1>
@@ -306,6 +306,7 @@ class GoalsTracker extends React.Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }
