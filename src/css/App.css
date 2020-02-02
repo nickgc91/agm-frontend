@@ -4,6 +4,8 @@
   background-color: brown;
   text-align: center;
   width: 100%;
+  margin-top: 60px;
+  padding: 30px;
 }
 
 
@@ -49,19 +51,9 @@
   text-align: center;
   padding: 15px;
 } */
-
-.goals-tracker {
-  opacity: 0.8;
-  color: white;
-  background-color: #236b8e;
-  font-size: 30px;
-  border-radius: 25px;
-  padding: 40px;
-  width: 80%;
-  text-align: center;
-}
-
 .status-updates {
+  height: 350px;
+  width: 100%;
   overflow: scroll;
   opacity: 0.8;
   color: white;
@@ -70,9 +62,22 @@
   font-size: 15px;
   border-radius: 25px;
   padding: 30px;
+  margin-bottom: 30px;
+}
+.goals-tracker {
+  opacity: 0.8;
+  color: white;
+  background-color: #236b8e;
+  font-size: 30px;
+  border-radius: 25px;
+  padding: 40px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .accountability-partner {
+  width: 100%;
   opacity: 0.8;
   color: white;
   background-color: #236b8e;
@@ -80,9 +85,11 @@
   padding: 25px;
   font-size: 30px;
   border-radius: 25px;
+  margin-bottom: 30px;
 }
 
 .life-status-tracker {
+  width: 100%;
   opacity: 0.8;
   margin: 0;
   color: white;
@@ -91,9 +98,11 @@
   font-size: 30px;
   border-radius: 25px;
   padding: 20px;
+  margin-bottom: 30px;
 }
 
 .journaling {
+  width: 100%;
   opacity: 0.8;
   color: white;
   background-color: #236b8e;
@@ -101,9 +110,11 @@
   font-size: 30px;
   border-radius: 25px;
   padding: 40px;
+  margin-bottom: 30px;
 }
 
 .grid-item77 {
+  width: 100%;
   background-color: black;
   color: white;
   grid-area: footer;

@@ -91,13 +91,13 @@ class Journaling extends React.Component {
             <div className="ele">
               <h2>My Past Journaling Entries</h2>
               <br></br>
-              <div class="ui list">
+              <div className="ui list">
                 {this.props.userData.journalings.map((journalEntry, index) => {
                   return (
-                    <div class="item">
+                    <div className="item">
                       <div style={{ borderRadius: "25px" }}>
                         <h3
-                          class="header"
+                          className="header"
                           onClick={e => {
                             localStorage.setItem("pageShow", e.target.id);
                             this.props.updateJournalEntryToShow(e.target.id);
@@ -108,7 +108,7 @@ class Journaling extends React.Component {
                             {journalEntry.journal_title}
                           </h1>
                           </h3>
-                        <div class="description">
+                        <div className="description">
                           <h4>{journalEntry.journal_text.substr(0, 150)}...</h4>
                         </div>
                       </div>

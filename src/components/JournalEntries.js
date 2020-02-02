@@ -51,11 +51,11 @@ class JournalEntries extends React.Component {
       <div>
         <div style={{
         textAlign: 'center',
-        padding: '100px'
+          marginBottom: '60px'
       }}>
           <div
             style={{
-              width: '1000px',
+              width: '300px',
               margin: '0 auto',
               textAlign: 'center',
               opacity: '0.8',
