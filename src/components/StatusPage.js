@@ -96,28 +96,6 @@ class StatusPage extends React.Component {
               </h2>
             </div>
           </div>
-          <div className="grid-item2">
-            <div className="goals-tracker">
-              <h2
-              >My Goals</h2>
-              <h3>
-                {" "}
-                You are currently working on {userData.goals[0].numOfGoals}{" "}
-                goals.
-              </h3>
-              <h3>
-                Latest goal --> {userData.goals[userData.goals.length - 1].goal[1]}
-              </h3>
-              <br />
-              <button
-                style={{ width: '120px', borderRadius: "25px" }}
-                className="black ui button"
-                onClick={() => this.props.history.push("/goals-tracker")}
-              >
-                Update my goals..
-              </button>
-            </div>
-          </div>
           <div className="grid-item3">
             <div className="status-updates">
               <h2>Latest Mastermind Updates</h2>
@@ -187,6 +165,29 @@ class StatusPage extends React.Component {
               })}
             </div>
           </div>
+          <div className="grid-item2">
+            <div className="goals-tracker">
+              <h2
+              >My Goals</h2>
+              <h3>
+                {" "}
+                You are currently working on {userData.goals[0].numOfGoals}{" "}
+                goals.
+              </h3>
+              <h3>
+                Latest goal --> {userData.goals[userData.goals.length - 1].goal[1]}
+              </h3>
+              <br />
+              <button
+                style={{ width: '120px', borderRadius: "25px" }}
+                className="black ui button"
+                onClick={() => this.props.history.push("/goals-tracker")}
+              >
+                Update my goals..
+              </button>
+            </div>
+          </div>
+          
           <div className="grid-item5">
             <div className="life-status-tracker">
             My Life Status Tracker
