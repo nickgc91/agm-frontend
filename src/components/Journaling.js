@@ -71,17 +71,18 @@ class Journaling extends React.Component {
                 className="em em-writing_hand"
                 aria-roledescription="img"
                 aria-label="writing1"
+                style={{ marginRight: '5px'}}
               ></i>{" "}
               Journaling Time{" "}
-              <i
+              {/* <i
                 className="em em-writing_hand"
                 aria-roledescription="img"
                 aria-label="writing2"
-              ></i>
+              ></i> */}
             </h1>
           </div>
           <div style={{ centerAlign: 'center', padding: '20px' }}>
-            <div onChange={() => this.handleToggle()} class="ui toggle checkbox" >
+            <div onChange={() => this.handleToggle()} className="ui toggle checkbox" >
               <input type="checkbox" name="toggleJournal"></input>
               <label>See Past Journal Entries</label>
             </div>

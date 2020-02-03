@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 class Chart extends Component {
   
-    
+      
       chartData = {
         scales: {
             yAxes: [{
@@ -53,8 +53,9 @@ class Chart extends Component {
     return (
 
 
-      <div className="chart">
+      <div className="chart" >
         <Bar
+        height={350}
           data={this.chartData}
           options={{
             layout: {
@@ -63,7 +64,7 @@ class Chart extends Component {
             title: {
               display: true,
               fontSize: 30,
-              text: 'My Life Status Tracker', 
+
               padding: 10,
               fontColor: 'white'
             },
