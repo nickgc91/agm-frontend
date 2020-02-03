@@ -189,6 +189,7 @@ class StatusPage extends React.Component {
           </div>
           <div className="grid-item5">
             <div className="life-status-tracker">
+            My Life Status Tracker
               {!this.state.updateLifeStatusTracker ? (
                 <div>
                 <div style={{ paddingBottom: '20px' }}>
