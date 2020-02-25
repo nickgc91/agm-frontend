@@ -17,7 +17,7 @@ ReactDOM.render(
       <NavBar id='nav'/>
       <App />
       <div style={{   position: 'absolute', bottom: '0', width: '100%', height: '5rem' }} className="grid-item77">
-            <h1  >AGM All Rights Reserved</h1>
+            <h1 >AGM All Rights Reserved</h1>
       </div>
       </div>
     </Router>
