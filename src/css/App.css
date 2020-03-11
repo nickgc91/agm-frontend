@@ -8,50 +8,9 @@
 }
 
 
-/* 
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "header"
-    "goalstracker" 
-    "journaling"
-    "updatefeed"
-    "lifestatus"
-    "updatefeed"
-    "accountabilitypartner";
-  padding: 20px;
-}
 
-.grid-item1 {
-  grid-area: header;
-}
-
-.grid-item2 {
-  grid-area: goalstracker;
-}
-
-.grid-item3 {
-  grid-area: updatefeed;
-}
-
-.grid-item4 {
-  grid-area: accountabilitypartner;
-}
-
-.grid-item5 {
-  grid-area: lifestatus;
-}
-
-.grid-item6 {
-  grid-area: journaling;
-}
-
-.grid-container > div {
-  text-align: center;
-  padding: 15px;
-} */
 .status-updates {
-  height: 350px;
+  height: 351px;
   width: 100%;
   overflow: scroll;
   opacity: 0.8;
